@@ -12,6 +12,13 @@ import CandProfileImg from '../../assets/Features/Candidate intelligence/Candida
 import ResumeBankImg from '../../assets/Features/Candidate intelligence/Resume Bnk.svg';
 import ResumeBuilderImg from '../../assets/Features/Candidate intelligence/Resume Bank builder.svg';
 
+import HiringAnalyticsImg from '../../assets/Features/Recuritement insights/hiring analytics.svg';
+import RecruiterPerformanceImg from '../../assets/Features/Recuritement insights/Recuriter performace.svg';
+import FunnelAnalysisImg from '../../assets/Features/Recuritement insights/Funnel Analysis.svg';
+
+import TCNegotiationsImg from '../../assets/Features/negotiations/T&c negtiations.svg';
+import JobPostNegotiationsImg from '../../assets/Features/negotiations/Job post negotiaons.svg';
+
 interface FeatureItem {
     id: string;
     headerTitle: string;
@@ -183,21 +190,21 @@ const ModernFeatures: React.FC = () => {
             headerTitle: 'ANALYTICS',
             heading: 'Hiring Analytics',
             bodyText: 'Comprehensive dashboards that track time-to-hire, source quality, and pipeline performance across all your open roles.',
-            image: ContainerImg
+            image: HiringAnalyticsImg
         },
         {
             id: '10',
             headerTitle: 'PERFORMANCE',
             heading: 'Recruiter Performance',
             bodyText: 'Monitor individual recruiter productivity, placement rates, and activity metrics to keep your team performing at their best.',
-            image: JDGenImg
+            image: RecruiterPerformanceImg
         },
         {
             id: '11',
             headerTitle: 'FUNNEL',
             heading: 'Funnel Analysis',
             bodyText: 'Visualize candidate drop-off at every stage of your hiring funnel and identify bottlenecks with AI-powered recommendations.',
-            image: SummeryPopupImg
+            image: FunnelAnalysisImg
         },
     ];
 
@@ -207,14 +214,14 @@ const ModernFeatures: React.FC = () => {
             headerTitle: 'NEGOTIATIONS',
             heading: 'T&C Negotiations',
             bodyText: 'Streamline terms and conditions negotiation with structured workflows, version tracking, and real-time collaboration between all stakeholders.',
-            image: ResumeBuilderImg  // ← placeholder until real image is provided
+            image: TCNegotiationsImg
         },
         {
             id: '13',
             headerTitle: 'OFFER MANAGEMENT',
             heading: 'Offer Negotiations',
             bodyText: 'Manage the full offer lifecycle from initial package creation to final sign-off, with approval flows and counter-offer tracking.',
-            image: CandProfileImg  // ← placeholder until real image is provided
+            image: JobPostNegotiationsImg
         },
     ];
 

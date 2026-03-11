@@ -25,9 +25,17 @@ const ASSETS = {
   JDGen: new URL('../assets/Features/AI recuriter tool/Ai JOb descrptiodescription Generator.svg', import.meta.url).href,
   Container: new URL('../assets/Features/AI recuriter tool/Container.svg', import.meta.url).href,
   SummeryPopup: new URL('../assets/Features/AI recuriter tool/Summery popup.svg', import.meta.url).href,
+  
   CandProfile: new URL('../assets/Features/Candidate intelligence/Candidate Profile.svg', import.meta.url).href,
   ResumeBuilder: new URL('../assets/Features/Candidate intelligence/Resume Bank builder.svg', import.meta.url).href,
   ResumeBank: new URL('../assets/Features/Candidate intelligence/Resume Bnk.svg', import.meta.url).href,
+
+  HiringAnalytics: new URL('../assets/Features/Recuritement insights/hiring analytics.svg', import.meta.url).href,
+  RecruiterPerformance: new URL('../assets/Features/Recuritement insights/Recuriter performace.svg', import.meta.url).href,
+  FunnelAnalysis: new URL('../assets/Features/Recuritement insights/Funnel Analysis.svg', import.meta.url).href,
+
+  TCNegotiations: new URL('../assets/Features/negotiations/T&c negtiations.svg', import.meta.url).href,
+  JobPostNegotiations: new URL('../assets/Features/negotiations/Job post negotiaons.svg', import.meta.url).href,
 };
 
 export const menuData: { features: MenuSection; useCases: MenuSection } = {
@@ -72,9 +80,9 @@ export const menuData: { features: MenuSection; useCases: MenuSection } = {
         description: "Data-driven visibility into your entire hiring operation — track performance, analyse funnels, and make smarter decisions.",
         icon: "solar:chart-square-bold-duotone",
         featureCards: [
-          { headerTitle: 'ANALYTICS', heading: 'Hiring Analytics', bodyText: 'Comprehensive dashboards that track time-to-hire, source quality, and pipeline performance across all your open roles.', image: ASSETS.Container },
-          { headerTitle: 'PERFORMANCE', heading: 'Recruiter Performance', bodyText: 'Monitor individual recruiter productivity, placement rates, and activity metrics to keep your team performing at their best.', image: ASSETS.JDGen },
-          { headerTitle: 'FUNNEL', heading: 'Funnel Analysis', bodyText: 'Visualize candidate drop-off at every stage of your hiring funnel and identify bottlenecks with AI-powered recommendations.', image: ASSETS.SummeryPopup },
+          { headerTitle: 'ANALYTICS', heading: 'Hiring Analytics', bodyText: 'Comprehensive dashboards that track time-to-hire, source quality, and pipeline performance across all your open roles.', image: ASSETS.HiringAnalytics },
+          { headerTitle: 'PERFORMANCE', heading: 'Recruiter Performance', bodyText: 'Monitor individual recruiter productivity, placement rates, and activity metrics to keep your team performing at their best.', image: ASSETS.RecruiterPerformance },
+          { headerTitle: 'FUNNEL', heading: 'Funnel Analysis', bodyText: 'Visualize candidate drop-off at every stage of your hiring funnel and identify bottlenecks with AI-powered recommendations.', image: ASSETS.FunnelAnalysis },
         ],
         faqs: [
           { question: "Can I export analytics reports?", answer: "All reports can be exported to CSV, PDF, or directly to your BI tools via API." },
@@ -87,8 +95,8 @@ export const menuData: { features: MenuSection; useCases: MenuSection } = {
         description: "Close more candidates faster with structured negotiation workflows for both terms and compensation.",
         icon: "solar:hand-shake-bold-duotone",
         featureCards: [
-          { headerTitle: 'NEGOTIATIONS', heading: 'T&C Negotiations', bodyText: 'Streamline terms and conditions negotiation with structured workflows, version tracking, and real-time collaboration between all stakeholders.', image: ASSETS.ResumeBuilder },
-          { headerTitle: 'OFFER MANAGEMENT', heading: 'Job Post Negotiations', bodyText: 'Manage the full offer lifecycle from initial package creation to final sign-off, with approval flows and counter-offer tracking.', image: ASSETS.CandProfile },
+          { headerTitle: 'NEGOTIATIONS', heading: 'T&C Negotiations', bodyText: 'Streamline terms and conditions negotiation with structured workflows, version tracking, and real-time collaboration between all stakeholders.', image: ASSETS.TCNegotiations },
+          { headerTitle: 'OFFER MANAGEMENT', heading: 'Job Post Negotiations', bodyText: 'Manage the full offer lifecycle from initial package creation to final sign-off, with approval flows and counter-offer tracking.', image: ASSETS.JobPostNegotiations },
         ],
         faqs: [
           { question: "Can candidates respond to offers digitally?", answer: "Yes, candidates receive a branded offer portal where they can review, accept, or counter an offer entirely online." },
