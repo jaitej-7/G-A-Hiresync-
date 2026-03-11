@@ -1,0 +1,18 @@
+﻿
+E:\G A Hiresync\hiresync-app\src\components\layout\Navbar.tsx
+  70:159  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  71:224  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  72:231  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\G A Hiresync\hiresync-app\src\components\sections\ModernFeatures.tsx
+  31:76  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\G A Hiresync\hiresync-app\src\components\ui\ParticleBag.tsx
+  200:30  error  Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  232:10  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+E:\G A Hiresync\hiresync-app\src\components\ui\StickyHeading.tsx
+  12:88  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 7 problems (7 errors, 0 warnings)
+
