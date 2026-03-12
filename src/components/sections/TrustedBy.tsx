@@ -2,17 +2,93 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { StickyHeading } from '../ui/StickyHeading';
 
-const TrustedBy: React.FC = () => {
-    // These would ideally be real logo SVGs from the design
-    const clients = [
-        "Goldman Sachs", "Google", "Amazon", "Microsoft", "Meta", "Netflix",
-        "Tesla", "SpaceX", "Apple", "Adobe", "Salesforce", "Oracle"
-    ];
+// Fallback to text labels instead of image imports since the image folder does not yet exist.
+// This prevents Vite from throwing build errors on missing static assets.
+const rawLogos = [
+    { label: "GA Consulting Services" },
+    { label: "GA Digital Solutions" },
+    { label: "GA LMS" },
+    { label: "Hiresync" },
+    { label: "Infynix" },
+    { label: "1Bridge" },
+    { label: "Infosage" },
+    { label: "Corporate Finco" },
+];
+
+const LogoItem = ({ item }: { item: { label: string } }) => (
+    <div style={{
+        width: '260px',
+        height: '108px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRight: '1px solid #E5E7EB',
+        backgroundColor: 'transparent',
+        transition: 'box-shadow 0.2s',
+        cursor: 'default',
+        flexShrink: 0
+    }}
+        onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.02)'}
+        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
+    >
+        <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+            padding: '20px'
+        }}>
+            <span className="text-xl font-bold tracking-tighter text-neutral-400 text-center uppercase leading-tight uppercase hover:text-neutral-900 transition-colors duration-300">
+                {item.label}
+            </span>
+        </div>
+    </div>
+);
+
+const LogoRow = ({ logos, speed }: { logos: { label: string }[], speed: number }) => {
+    // Duplicate logos enough times to fill width + buffer for loop
+    const rowLogos = [...logos, ...logos];
 
     return (
-        <section className="py-24">
-            <div className="max-w-[1440px] mx-auto px-6">
-                <div className="flex flex-col items-center mb-16">
+        <div style={{
+            display: 'flex',
+            width: '100%',
+            overflow: 'hidden',
+            borderBottom: '1px solid #E5E7EB',
+            position: 'relative'
+        }}>
+            <motion.div
+                style={{
+                    display: 'flex',
+                    width: 'max-content',
+                }}
+                animate={{
+                    x: ['0%', '-50%']
+                }}
+                transition={{
+                    duration: speed,
+                    ease: "linear",
+                    repeat: Infinity
+                }}
+            >
+                {rowLogos.map((item, index) => (
+                    <LogoItem key={index} item={item} />
+                ))}
+            </motion.div>
+        </div>
+    );
+};
+
+const TrustedBy: React.FC = () => {
+    // 8 Actual logos -> Repeated to fill the marquee
+    // Create a larger array for the marquee (Repeat rawLogos 4 times = 32 items)
+    const logos = [...rawLogos, ...rawLogos, ...rawLogos, ...rawLogos];
+
+    return (
+        <section className="py-24 pb-48 flex flex-col justify-center">
+            <div className="max-w-[1440px] mx-auto px-6 w-full mb-8">
+                <div className="flex flex-col items-center">
                     <StickyHeading
                         badgeText="Trusted By"
                         title={[
@@ -27,23 +103,28 @@ const TrustedBy: React.FC = () => {
                             </>
                         }
                     />
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-16 items-center justify-items-center opacity-40 grayscale">
-                        {clients.map((client, index) => (
-                            <motion.div
-                                key={client}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                whileHover={{ opacity: 1, filter: "grayscale(0%)", scale: 1.05 }}
-                                className="text-xl md:text-2xl font-bold tracking-tighter text-neutral-400 cursor-default select-none uppercase hover:text-neutral-900 transition-all duration-300"
-                            >
-                                {client}
-                            </motion.div>
-                        ))}
-                    </div>
                 </div>
+            </div>
+
+            <div className="-mt-16 md:-mt-32 relative z-10" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                maxWidth: '1200px',
+                margin: '0 auto',
+                borderTop: '1px solid #E5E7EB',
+                borderLeft: '1px solid #E5E7EB',
+                background: 'transparent',
+                maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            }}>
+                {/* Row 1 */}
+                <LogoRow logos={logos} speed={80} />
+
+                {/* Row 2 */}
+                <LogoRow logos={logos} speed={70} />
+
+                {/* Row 3 */}
+                <LogoRow logos={logos} speed={90} />
             </div>
         </section>
     );

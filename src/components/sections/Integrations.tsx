@@ -6,8 +6,8 @@ import { StickyHeading, MagneticWrapper } from '../ui';
 const integrations = [
     { name: 'WhatsApp', icon: 'logos:whatsapp-icon', color: '#25D366', live: true },
     { name: 'SMS', icon: 'solar:chat-square-like-bold', color: '#6366F1', live: true },
-    { name: 'LinkedIn', icon: 'logos:linkedin-icon', color: '#0077B5', live: false },
-    { name: 'Gmail', icon: 'logos:google-gmail', color: '#EA4335', live: false },
+    { name: 'LinkedIn', icon: 'logos:linkedin-icon', color: '#0077B5', live: true },
+    { name: 'Mail', icon: 'logos:google-gmail', color: '#EA4335', live: true },
     { name: 'Zoom', icon: 'logos:zoom-icon', color: '#2D8CFF', live: false },
     { name: 'Teams', icon: 'logos:microsoft-teams', color: '#6264A7', live: false },
     { name: 'Trello', icon: 'logos:trello', color: '#0079BF', live: false },

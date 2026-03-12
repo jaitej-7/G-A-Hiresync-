@@ -10,7 +10,9 @@ import ContainerImg from '../../assets/Features/AI recuriter tool/Container.svg'
 
 import CandProfileImg from '../../assets/Features/Candidate intelligence/Candidate Profile.svg';
 import ResumeBankImg from '../../assets/Features/Candidate intelligence/Resume Bnk.svg';
-import ResumeBuilderImg from '../../assets/Features/Candidate intelligence/Resume Bank builder.svg';
+import ResumeComparisonImg from '../../assets/Features/Candidate intelligence/Resume Comparison.svg';
+import ResumeParsingImg from '../../assets/Features/AI recuriter tool/Resume parshing.svg';
+import JDParsingImg from '../../assets/Features/AI recuriter tool/jd parshing.svg';
 
 import HiringAnalyticsImg from '../../assets/Features/Recuritement insights/hiring analytics.svg';
 import RecruiterPerformanceImg from '../../assets/Features/Recuritement insights/Recuriter performace.svg';
@@ -65,13 +67,13 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({ badge, title, descripti
         <section ref={sectionRef} className="py-24 md:py-32 relative">
             {/* Background Atmosphere - Moved to a separate container to not break sticky headings */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <div className={`absolute top-1/2 ${reverse ? '-left-64' : '-right-64'} -translate-y-1/2 w-[600px] h-[600px] bg-[#9D90F5]/20 blur-[120px] rounded-full`} />
+                <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-[600px] h-[600px] bg-[#9D90F5]/20 blur-[120px] rounded-full`} />
             </div>
 
-            <div className={`max-w-[1440px] mx-auto px-6 flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-start gap-16 md:gap-16 relative z-10`}>
+            <div className={`w-full max-w-[1440px] mx-auto px-6 lg:px-8 flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-start justify-between gap-16 md:gap-16 relative z-10`}>
 
                 {/* Sticky Heading Column */}
-                <div className="w-full md:w-[40%] md:sticky md:top-40 h-fit z-10">
+                <div className="w-full md:w-[35%] lg:w-[40%] md:sticky md:top-40 h-fit z-10 shrink-0">
                     <motion.div
                         initial={{ opacity: 0, x: reverse ? 50 : -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -104,7 +106,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({ badge, title, descripti
                 </div>
 
                 {/* Cards Column */}
-                <div className="w-full md:w-[60%] max-w-[650px] flex flex-col gap-12 pb-32">
+                <div className="w-full md:w-[55%] max-w-[650px] flex flex-col gap-12 pb-32">
                     {items.map((item, index) => (
                         <ModernFeatureCard
                             key={item.id}
@@ -149,14 +151,14 @@ const ModernFeatures: React.FC = () => {
             headerTitle: 'RESUME PARSING',
             heading: 'Resume Parsing',
             bodyText: 'Automatically extract structured data from any resume format. Skills, experience, education, and contact details parsed with AI precision.',
-            image: CandProfileImg  // ← placeholder until real image is provided
+            image: ResumeParsingImg
         },
         {
             id: '5',
             headerTitle: 'JD PARSING',
             heading: 'Job Description Parsing',
             bodyText: 'Decode complex JDs into structured requirements — automatically identifying must-have skills, experience levels, and role expectations.',
-            image: ResumeBankImg  // ← placeholder until real image is provided
+            image: JDParsingImg
         },
     ];
 
@@ -180,7 +182,7 @@ const ModernFeatures: React.FC = () => {
             headerTitle: 'COMPARISON',
             heading: 'Resume Comparison',
             bodyText: 'Side-by-side AI comparison of multiple candidates — instantly surface the best match against your job requirements.',
-            image: ResumeBuilderImg  // ← placeholder until real image is provided
+            image: ResumeComparisonImg
         },
     ];
 
@@ -227,7 +229,7 @@ const ModernFeatures: React.FC = () => {
 
     return (
         <div className="font-geist relative">
-            <div className="pt-24 flex flex-col items-center text-center">
+            <div className="max-w-[1440px] mx-auto px-6 w-full pt-24 flex flex-col items-center text-center">
                 <StickyHeading
                     badgeText="Features"
                     title={["Platform Features that", "Power Your Hiring"]}

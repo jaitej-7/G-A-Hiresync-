@@ -6,19 +6,21 @@ import { extend } from '@react-three/fiber';
 
 // 5 Brand Colors from Logo
 const COLORS = [
-  new THREE.Color('#56A8FD'), // Blue
-  new THREE.Color('#A16AFE'), // Purple
-  new THREE.Color('#D142F5'), // Pink-Purple
-  new THREE.Color('#F46EBE'), // Pink
-  new THREE.Color('#F9B2BC'), // Light Pink
+  new THREE.Color('#56A8FD'), // Brand Blue
+  new THREE.Color('#A16AFE'), // Brand Purple
+  new THREE.Color('#D142F5'), // Brand Pink/Purple
+  new THREE.Color('#F46EBE'), // Brand Pink
+  new THREE.Color('#F9B2BC'), // Brand Peach
 ];
 
 const CustomParticleMaterial = shaderMaterial(
   {
     uTime: 0,
     uMouse: new THREE.Vector3(0, 0, 0),
-    uRadius: 1,      // Base repulsion radius
-    uShatterForce: 1, // How violently they spread
+    uRadius: 1.5,
+    uShatterForce: 1.0,
+    uMorph: 0,
+    uAlpha: 1.0,
   },
   // Vertex Shader
   `
@@ -26,12 +28,19 @@ const CustomParticleMaterial = shaderMaterial(
     uniform vec3 uMouse;
     uniform float uRadius;
     uniform float uShatterForce;
+    uniform float uMorph;
+    
+    attribute vec3 position2; // Helix
+    attribute vec3 position3; // Torus
     attribute float aRandom;
-    attribute vec3 aColor;      
+    attribute vec3 aColor;
+    
     varying vec3 vColor;
     varying float vAlpha;
 
-    // Simplex noise function for natural drift
+    // Helper functions for noise and randomness
+    float hash(float n) { return fract(sin(n) * 43758.5453123); }
+    
     vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
     vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
     vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
@@ -56,7 +65,7 @@ const CustomParticleMaterial = shaderMaterial(
               + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
       float n_ = 1.0/7.0;
       vec3  ns = n_ * D.wyz - D.xzx;
-      vec4 j = p - 49.0 * floor(p * ns.z.z.z);
+      vec4 j = p - 49.0 * floor(p * ns.z);
       vec4 x_ = floor(j * ns.z);
       vec4 y_ = floor(j - 7.0 * x_ );
       vec4 x = x_ *ns.x + ns.yyyy;
@@ -85,73 +94,53 @@ const CustomParticleMaterial = shaderMaterial(
 
     void main() {
       vColor = aColor;
-
-      // Base position is the incoming vertex position
-      vec3 pos = position;
-
-      // 1. Natural Drift (Noise)
-      float noiseFreq = 0.5;
-      float noiseAmp = 0.3;
-      vec3 noisePos = vec3(
-        snoise(pos * noiseFreq + uTime * 0.2),
-        snoise(pos * noiseFreq + uTime * 0.2 + 100.0),
-        snoise(pos * noiseFreq + uTime * 0.2 + 200.0)
-      );
-      pos += noisePos * noiseAmp;
-
-      // 2. Mouse Shatter/Repulsion Effect
-      // Calculate distance from mouse in 3D space
-      float distToMouse = distance(pos, uMouse);
       
-      // We want a sharp, strong effect nearby that fades quickly
-      // uRadius controls how far the mouse effect reaches
-      float influence = 1.0 - smoothstep(0.0, uRadius, distToMouse);
-      
-      if (influence > 0.0) {
-        // Direction away from mouse
-        vec3 dir = normalize(pos - uMouse);
-        
-        // Add some random scatter direction to make it look like a "shatter" 
-        // rather than a perfect sphere pushing away
-        vec3 scatterDir = normalize(dir + noisePos * 1.5);
-        
-        // Apply force based on influence (closer = stronger) and global shatter force
-        // We square the influence to make it highly concentrated near the mouse
-        float force = influence * influence * uShatterForce;
-        
-        pos += scatterDir * force;
+      // Morphing positions
+      vec3 targetPos;
+      if (uMorph <= 1.0) {
+        targetPos = mix(position, position2, uMorph);
+      } else {
+        targetPos = mix(position2, position3, uMorph - 1.0);
       }
 
-      vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+      // Add gentle noise-based drift
+      float driftStrength = 0.2 * (1.0 - smoothstep(0.0, 0.5, uMorph) * 0.5);
+      vec3 drift = vec3(
+        snoise(targetPos * 0.5 + uTime * 0.2 + aRandom),
+        snoise(targetPos * 0.5 + uTime * 0.25 + aRandom * 1.3),
+        snoise(targetPos * 0.5 + uTime * 0.15 + aRandom * 1.7)
+      ) * driftStrength * (1.0 + aRandom);
       
-      // Increased base particle size here (from 15.0 to 25.0 base scale)
-      // Size pulses slightly with time and random offset
-      float pointSize = (25.0 * aRandom + 10.0) + sin(uTime * 2.0 + aRandom * 10.0) * 3.0;
+      vec3 finalPos = targetPos + drift;
+
+      // Mouse Interaction (in local space for simplicity or world space)
+      // We will treat uMouse as being in the same space as finalPos
+      float dist = distance(finalPos.xy, uMouse.xy);
+      if (dist < uRadius) {
+        float force = (1.0 - dist / uRadius) * uShatterForce;
+        finalPos.xy += normalize(finalPos.xy - uMouse.xy) * force;
+      }
+
+      vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0);
       
-      gl_PointSize = pointSize * (1.0 / -mvPosition.z);
+      // Point size based on depth and random variation
+      gl_PointSize = (3.0 + aRandom * 4.0) * (300.0 / -mvPosition.z);
       gl_Position = projectionMatrix * mvPosition;
       
-      // Calculate alpha based on distance from camera for depth fading
-      vAlpha = smoothstep(15.0, 2.0, -mvPosition.z);
+      // Depth-based transparency + random shimmer
+      vAlpha = smoothstep(12.0, 2.0, -mvPosition.z) * (0.6 + 0.4 * sin(uTime + aRandom * 10.0));
     }
   `,
   // Fragment Shader
   `
+    uniform float uAlpha;
     varying vec3 vColor;
     varying float vAlpha;
     void main() {
-      // Create soft circular particles
-      vec2 xy = gl_PointCoord.xy - vec2(0.5);
-      float ll = length(xy);
-      if (ll > 0.5) discard;
-      
-      // Very soft radial gradient for the particle itself
-      float alpha = smoothstep(0.5, 0.1, ll);
-      
-      // Global opacity capped at ~0.55 for soft look, combined with depth fade
-      float finalAlpha = alpha * 0.55 * vAlpha;
-      
-      gl_FragColor = vec4(vColor, finalAlpha);
+      float d = distance(gl_PointCoord, vec2(0.5));
+      if (d > 0.5) discard;
+      float strength = smoothstep(0.5, 0.1, d);
+      gl_FragColor = vec4(vColor, strength * vAlpha * uAlpha);
     }
   `
 );
@@ -160,32 +149,45 @@ extend({ CustomParticleMaterial });
 
 const Particles = forwardRef<THREE.Group, { radius: number; shatterForce: number; mouseRadius: number }>(({ radius, shatterForce, mouseRadius }, ref) => {
   const { viewport } = useThree();
-  const count = 3000; // Total particles
-  
-  // Only calculate the SPHERE positions once. No morph targets.
-  const { positions, colors, aRandom } = useMemo(() => {
-    const p = new Float32Array(count * 3);
+  const count = 3000;
+
+  const { positions, positions2, positions3, colors, aRandom } = useMemo(() => {
+    const p1 = new Float32Array(count * 3); // Sphere
+    const p2 = new Float32Array(count * 3); // Helix
+    const p3 = new Float32Array(count * 3); // Torus
     const c = new Float32Array(count * 3);
     const r = new Float32Array(count);
-    
+
     for (let i = 0; i < count; i++) {
-      // Sphere distribution
+      // 1. Sphere
       const theta = Math.random() * 2 * Math.PI;
       const phi = Math.acos(Math.random() * 2 - 1);
-      
-      // Distribute particles randomly *within* the sphere volume, not just on surface
-      // Math.cbrt pushes more particles towards the outer edge for a denser look
-      const r_volume = radius * Math.cbrt(Math.random()); 
-      
-      const x = r_volume * Math.sin(phi) * Math.cos(theta);
-      const y = r_volume * Math.sin(phi) * Math.sin(theta);
-      const z = r_volume * Math.cos(phi);
-      
-      p[i * 3] = x;
-      p[i * 3 + 1] = y;
-      p[i * 3 + 2] = z;
+      const r_sphere = radius * (0.9 + Math.random() * 0.1);
 
-      // Assign random brand color
+      p1[i * 3] = r_sphere * Math.sin(phi) * Math.cos(theta);
+      p1[i * 3 + 1] = r_sphere * Math.sin(phi) * Math.sin(theta);
+      p1[i * 3 + 2] = r_sphere * Math.cos(phi);
+
+      // 2. Helix
+      const h_theta = (i / count) * Math.PI * 16;
+      const h_radius = radius * 0.7;
+      const h_height = ((i / count) - 0.5) * radius * 4;
+
+      p2[i * 3] = h_radius * Math.cos(h_theta);
+      p2[i * 3 + 1] = h_height;
+      p2[i * 3 + 2] = h_radius * Math.sin(h_theta);
+
+      // 3. Torus
+      const t_theta = Math.random() * 2 * Math.PI;
+      const t_phi = Math.random() * 2 * Math.PI;
+      const t_R = radius * 1.0;
+      const t_r = radius * 0.4;
+
+      p3[i * 3] = (t_R + t_r * Math.cos(t_phi)) * Math.cos(t_theta);
+      p3[i * 3 + 1] = (t_R + t_r * Math.cos(t_phi)) * Math.sin(t_theta);
+      p3[i * 3 + 2] = t_r * Math.sin(t_phi);
+
+      // Colors
       const color = COLORS[Math.floor(Math.random() * COLORS.length)];
       c[i * 3] = color.r;
       c[i * 3 + 1] = color.g;
@@ -193,31 +195,33 @@ const Particles = forwardRef<THREE.Group, { radius: number; shatterForce: number
 
       r[i] = Math.random();
     }
-    return { positions: p, colors: c, aRandom: r };
+    return { positions: p1, positions2: p2, positions3: p3, colors: c, aRandom: r };
   }, [count, radius]);
 
   const pointsRef = useRef<THREE.Points>(null);
-  const materialRef = useRef<THREE.ShaderMaterial & { uTime: number; uRadius: number; uShatterForce: number; uMouse: THREE.Vector3 }>(null);
+  const materialRef = useRef<any>(null);
 
   useFrame((state) => {
     if (!pointsRef.current || !materialRef.current) return;
 
     const t = state.clock.getElapsedTime();
-    
-    // Slow, elegant globe rotation
-    pointsRef.current.rotation.y = t * 0.05;
-    pointsRef.current.rotation.x = t * 0.02;
+
+    // Auto-rotation
+    pointsRef.current.rotation.y = t * 0.1;
+    pointsRef.current.rotation.x = t * 0.05;
 
     materialRef.current.uTime = t;
     materialRef.current.uRadius = mouseRadius;
     materialRef.current.uShatterForce = shatterForce;
 
-    // Convert mouse NDC (-1 to +1) to World Space coordinates
-    // We assume the object is at z=0 
+    // Scroll-based morphing
+    const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    const targetMorph = Math.min(2.0, scrollY / 1200); // Morph faster
+    materialRef.current.uMorph = THREE.MathUtils.lerp(materialRef.current.uMorph, targetMorph, 0.05);
+
+    // Mouse Interaction
     const mouseX = (state.mouse.x * viewport.width) / 2;
     const mouseY = (state.mouse.y * viewport.height) / 2;
-    
-    // Smoothly interpolate the shader's mouse position towards actual mouse position
     materialRef.current.uMouse.lerp(new THREE.Vector3(mouseX, mouseY, 0), 0.1);
   });
 
@@ -226,6 +230,8 @@ const Particles = forwardRef<THREE.Group, { radius: number; shatterForce: number
       <points ref={pointsRef}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
+          <bufferAttribute attach="attributes-position2" count={count} array={positions2} itemSize={3} />
+          <bufferAttribute attach="attributes-position3" count={count} array={positions3} itemSize={3} />
           <bufferAttribute attach="attributes-aColor" count={count} array={colors} itemSize={3} />
           <bufferAttribute attach="attributes-aRandom" count={count} array={aRandom} itemSize={1} />
         </bufferGeometry>
@@ -242,19 +248,16 @@ interface ParticleBagProps {
   mouseRadius?: number;
 }
 
-const ParticleBag: React.FC<ParticleBagProps> = ({ 
-  // Increased base sphere radius to cover more screen naturally
-  radius = 4.0, 
-  // How violently the particles are pushed away
-  shatterForce = 3.5, 
-  // The area of influence of the mouse
-  mouseRadius = 2.5 
+const ParticleBag: React.FC<ParticleBagProps> = ({
+  radius = 4.0,
+  shatterForce = 2.0,
+  mouseRadius = 2.5
 }) => {
   return (
     <div className="absolute inset-0 z-0 pointer-events-none">
-      <Canvas 
+      <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
-        eventSource={typeof document !== 'undefined' ? document.getElementById('app-root') || undefined : undefined}
+        gl={{ alpha: true, antialias: true }}
       >
         <Particles radius={radius} shatterForce={shatterForce} mouseRadius={mouseRadius} />
       </Canvas>

@@ -52,14 +52,14 @@ export const ModernFeatureCard: React.FC<ModernFeatureCardProps> = ({
                 {/* Image Container */}
                 <div className="relative flex-1 rounded-xl overflow-hidden bg-[#F0EEFF]/50 border border-neutral-100">
                     <motion.div
-                        className="w-full h-full overflow-hidden"
+                        className="w-full overflow-hidden"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 1.2, ease: [0.21, 1.02, 0.73, 1] }}
                     >
                         <img
                             src={image}
                             alt={heading}
-                            className="w-full h-full object-contain p-2 md:p-0 opacity-95 group-hover:opacity-100 transition-opacity"
+                            className="w-full object-cover opacity-95 group-hover:opacity-100 transition-opacity"
                         />
                     </motion.div>
 

@@ -140,7 +140,7 @@ const BlogPostPage: React.FC = () => {
                     
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 relative z-10 leading-tight">
                         Work easy.<br/>
-                        Grow further with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-brand-purple">HireSync.</span>
+Grow further with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-brand-purple animate-gradient-text">HireSync.</span>
                     </h2>
                     <div className="flex justify-center mt-8 relative z-10">
                         <Link to="/contact-us" className="bg-white text-neutral-900 text-sm font-bold px-8 py-4 rounded-full hover:bg-neutral-100 transition-all shadow-[0_8px_24px_rgba(255,255,255,0.15)] hover:shadow-[0_12px_32px_rgba(255,255,255,0.25)] flex items-center gap-2">

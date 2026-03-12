@@ -46,7 +46,7 @@ const BlogPage: React.FC = () => {
                     Resources & Insights
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 mb-6">
-                    HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">Blogs</span>
+HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple animate-gradient-text">Blogs</span>
                 </h1>
                 <p className="text-lg text-neutral-500 mb-8 max-w-xl mx-auto">
                     Find the ultimate guide to hiring, latest technological updates, and practices. Finding true potential out of the talent universe is our business.

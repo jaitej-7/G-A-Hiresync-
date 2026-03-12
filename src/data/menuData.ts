@@ -23,12 +23,15 @@ export interface MenuSection {
 // Asset imports as string paths (used in DynamicPage)
 const ASSETS = {
   JDGen: new URL('../assets/Features/AI recuriter tool/Ai JOb descrptiodescription Generator.svg', import.meta.url).href,
+  JDParsing: new URL('../assets/Features/AI recuriter tool/jd parshing.svg', import.meta.url).href,
   Container: new URL('../assets/Features/AI recuriter tool/Container.svg', import.meta.url).href,
   SummeryPopup: new URL('../assets/Features/AI recuriter tool/Summery popup.svg', import.meta.url).href,
+  ResumeParsing: new URL('../assets/Features/AI recuriter tool/Resume parshing.svg', import.meta.url).href,
   
   CandProfile: new URL('../assets/Features/Candidate intelligence/Candidate Profile.svg', import.meta.url).href,
   ResumeBuilder: new URL('../assets/Features/Candidate intelligence/Resume Bank builder.svg', import.meta.url).href,
   ResumeBank: new URL('../assets/Features/Candidate intelligence/Resume Bnk.svg', import.meta.url).href,
+  ResumeComparison: new URL('../assets/Features/Candidate intelligence/Resume Comparison.svg', import.meta.url).href,
 
   HiringAnalytics: new URL('../assets/Features/Recuritement insights/hiring analytics.svg', import.meta.url).href,
   RecruiterPerformance: new URL('../assets/Features/Recuritement insights/Recuriter performace.svg', import.meta.url).href,
@@ -51,8 +54,8 @@ export const menuData: { features: MenuSection; useCases: MenuSection } = {
           { headerTitle: 'AI RECRUITMENT', heading: 'Generative JD', bodyText: 'Generate perfectly structured, high-converting job descriptions in seconds using models trained on successful hiring patterns across industries.', image: ASSETS.JDGen },
           { headerTitle: 'PROFILE SEARCH', heading: 'AI Profile Search', bodyText: 'Find the perfect match using natural language queries. Search your entire talent pool with AI that understands intent, not just keywords.', image: ASSETS.Container },
           { headerTitle: 'SUMMARIZATION', heading: 'AI Job Post Summary', bodyText: 'Instantly distill lengthy job postings and resumes into sharp, actionable candidate summaries — highlighting skills, strengths, and gaps.', image: ASSETS.SummeryPopup },
-          { headerTitle: 'RESUME PARSING', heading: 'Resume Parsing', bodyText: 'Automatically extract structured data from any resume format. Skills, experience, education, and contact details parsed with AI precision.', image: ASSETS.CandProfile },
-          { headerTitle: 'JD PARSING', heading: 'Job Description Parsing', bodyText: 'Decode complex JDs into structured requirements — automatically identifying must-have skills, experience levels, and role expectations.', image: ASSETS.ResumeBank },
+          { headerTitle: 'RESUME PARSING', heading: 'Resume Parsing', bodyText: 'Automatically extract structured data from any resume format. Skills, experience, education, and contact details parsed with AI precision.', image: ASSETS.ResumeParsing },
+          { headerTitle: 'JD PARSING', heading: 'Job Description Parsing', bodyText: 'Decode complex JDs into structured requirements — automatically identifying must-have skills, experience levels, and role expectations.', image: ASSETS.JDParsing },
         ],
         faqs: [
           { question: "How does the AI Job Description Generator work?", answer: "Our model is trained on thousands of successful job postings and understands industry-specific language, required skills, and optimal formatting to produce compelling JDs instantly." },
@@ -67,7 +70,7 @@ export const menuData: { features: MenuSection; useCases: MenuSection } = {
         featureCards: [
           { headerTitle: 'RESUME BANK', heading: 'Resume Bank', bodyText: 'Centralize resumes from all sources into a single, searchable database with automated deduplication and AI-powered indexing.', image: ASSETS.ResumeBank },
           { headerTitle: 'CANDIDATE PROFILE', heading: 'Candidate Profile', bodyText: 'Maintain rich, structured candidate profiles with full interaction history, previous applications, and AI-extracted skill insights.', image: ASSETS.CandProfile },
-          { headerTitle: 'COMPARISON', heading: 'Resume Comparison', bodyText: 'Side-by-side AI comparison of multiple candidates — instantly surface the best match against your job requirements.', image: ASSETS.ResumeBuilder },
+          { headerTitle: 'COMPARISON', heading: 'Resume Comparison', bodyText: 'Side-by-side AI comparison of multiple candidates — instantly surface the best match against your job requirements.', image: ASSETS.ResumeComparison },
         ],
         faqs: [
           { question: "How does Resume Comparison work?", answer: "Our AI scores candidates across the same rubric based on the job description — skills match, experience relevance, education, and more — letting you rank them instantly." },

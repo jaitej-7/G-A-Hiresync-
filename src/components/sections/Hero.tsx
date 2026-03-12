@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import HeroVisual from '../../assets/hero/Hero.svg';
+import ParticleBag from '../ui/ParticleBag';
 
 const FloatingCursor = ({ label, color, delay = 0, initialPos = { x: 0, y: 0 }, direction = 'left' }: { label: string, color: string, delay?: number, initialPos?: { x: number, y: number }, direction?: 'left' | 'right' }) => (
     <motion.div
@@ -43,6 +44,10 @@ const FloatingCursor = ({ label, color, delay = 0, initialPos = { x: 0, y: 0 }, 
 const Hero: React.FC = () => {
     return (
         <section className="relative pt-20 md:pt-32 pb-20 md:pb-32 overflow-clip px-6 max-w-[1440px] mx-auto min-h-[90vh] flex flex-col justify-center">
+            {/* Particle Animation Background */}
+            <div className="absolute inset-0 z-0">
+                <ParticleBag radius={4.5} shatterForce={4.0} mouseRadius={3.0} />
+            </div>
 
             <div className="flex flex-col items-center text-center max-w-3xl mx-auto z-10 relative">
                 <motion.div
@@ -61,7 +66,7 @@ const Hero: React.FC = () => {
                     <div className="basis-full h-0"></div> {/* Line break */}
                     <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>Faster.</motion.span>
                     <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">In Sync.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple animate-gradient-text">In Sync.</span>
                     </motion.span>
                 </h1>
 

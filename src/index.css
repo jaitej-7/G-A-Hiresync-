@@ -58,6 +58,11 @@
     animation: gradient-text 4s linear infinite;
   }
 
+  .animate-gradient-text {
+    background-size: 200% auto;
+    animation: gradient-text 4s linear infinite;
+  }
+
   @keyframes gradient-text {
     0% {
       background-position: 0% 50%;

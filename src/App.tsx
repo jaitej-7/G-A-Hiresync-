@@ -7,7 +7,6 @@ import AboutPage from './pages/AboutPage';
 import ContactUsPage from './pages/ContactUsPage';
 import FAQsPage from './pages/FAQsPage';
 import ScrollToTop from './components/layout/ScrollToTop';
-import ParticleBag from './components/ui/ParticleBag';
 import AnimatedBackground from './components/ui/AnimatedBackground';
 
 import DynamicPage from './pages/DynamicPage';
@@ -22,10 +21,7 @@ const App: React.FC = () => {
       <div className="fixed inset-0 z-0 pointer-events-none">
         <AnimatedBackground />
       </div>
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        {/* ParticleBag internally creates a canvas that takes pointer events via framer-motion/three if we let it, but pointer-events-none on parent might block it. Wait, if we want pointer events for the shatter effect, the container MUST have pointer-events-auto, but then it blocks clicks. React Three Fiber's event system hooks into the canvas. We can use pointer-events-none on the wrapper, and then pass an event-source element to R3F. For now let's just use pointer-events-none and see if raycaster works or if we should use pointerEvents="none" in CSS but attach window listeners in ParticleBag. */}
-        <ParticleBag radius={4.0} shatterForce={3.5} mouseRadius={2.5} />
-      </div>
+
 
       <div className="relative z-10 flex flex-col min-h-screen pointer-events-auto">
         <ScrollToTop />
