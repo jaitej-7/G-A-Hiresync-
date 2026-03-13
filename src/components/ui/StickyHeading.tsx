@@ -14,15 +14,15 @@ const Word = ({ children, progress, range, isGradient }: { children: string, pro
 
     if (isGradient) {
         return (
-            <span className="relative inline-block mr-[0.25em] whitespace-nowrap">
+            <span className="relative inline-block mr-[0.25em]">
                 <span className="text-gradient text-transparent bg-clip-text">{children}</span>
             </span>
         );
     }
 
     return (
-        <span className="relative inline-block mr-[0.25em] whitespace-nowrap">
-            <span className="text-[#acacac] opacity-100">{children}</span>
+        <span className="relative inline-block mr-[0.25em]">
+            <span className="text-[#7b7b7b] opacity-100">{children}</span>
             <motion.span style={{ opacity }} className="absolute left-0 top-0 text-[#171717] w-full h-full">
                 {children}
             </motion.span>
@@ -35,7 +35,7 @@ export const StickyHeading: React.FC<StickyHeadingProps> = ({
     badgeText,
     gradientWord,
     subtitle,
-    className = "text-[28px] md:text-[36px] md:leading-[1.15] leading-[1.2] font-medium tracking-tight max-w-4xl mx-auto text-center flex flex-col items-center justify-center"
+    className = "text-[22px] sm:text-[26px] md:text-[36px] md:leading-[1.15] leading-[1.2] font-medium tracking-tight max-w-4xl mx-auto text-center flex flex-col items-center justify-center"
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 

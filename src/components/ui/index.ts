@@ -3,3 +3,4 @@ export * from './StickyHeading';
 export * from './FeatureCard';
 export * from './ModernFeatureCard';
 export { default as AnimatedBackground } from './AnimatedBackground';
+export { default as ParticlesCanvas } from './ParticlesCanvas';

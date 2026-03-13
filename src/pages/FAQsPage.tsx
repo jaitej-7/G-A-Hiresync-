@@ -1,14 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ContactFAQ from '../components/sections/contact/ContactFAQ';
-import { AnimatedBackground } from '../components/ui';
 
 const FAQsPage: React.FC = () => {
     return (
-        <div className="min-h-screen">
-            <section className="relative pt-32 pb-20 md:pb-32 overflow-hidden min-h-[60vh] flex flex-col justify-center">
-                <AnimatedBackground />
-
+        <div className="min-h-screen bg-transparent">
+            <section className="relative pt-32 pb-20 md:pb-32 overflow-hidden min-h-[60vh] flex flex-col justify-center bg-transparent">
                 <div className="max-w-[1200px] mx-auto px-6 relative z-10 mt-10">
                     <div className="flex flex-col items-center text-center">
                         <motion.div

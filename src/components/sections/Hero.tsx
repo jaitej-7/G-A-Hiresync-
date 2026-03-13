@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Icon } from '@iconify/react';
 import HeroVisual from '../../assets/hero/Hero.svg';
-import ParticleBag from '../ui/ParticleBag';
 
 const FloatingCursor = ({ label, color, delay = 0, initialPos = { x: 0, y: 0 }, direction = 'left' }: { label: string, color: string, delay?: number, initialPos?: { x: number, y: number }, direction?: 'left' | 'right' }) => (
     <motion.div
@@ -44,10 +42,6 @@ const FloatingCursor = ({ label, color, delay = 0, initialPos = { x: 0, y: 0 }, 
 const Hero: React.FC = () => {
     return (
         <section className="relative pt-20 md:pt-32 pb-20 md:pb-32 overflow-clip px-6 max-w-[1440px] mx-auto min-h-[90vh] flex flex-col justify-center">
-            {/* Particle Animation Background */}
-            <div className="absolute inset-0 z-0">
-                <ParticleBag radius={4.5} shatterForce={4.0} mouseRadius={3.0} />
-            </div>
 
             <div className="flex flex-col items-center text-center max-w-3xl mx-auto z-10 relative">
                 <motion.div
@@ -60,7 +54,7 @@ const Hero: React.FC = () => {
                     HireSync AI 2.0 is now live
                 </motion.div>
 
-                <h1 className="text-4xl md:text-6xl lg:text-[48px] font-medium tracking-tight text-[#171717] mb-2 leading-[1.1] flex flex-wrap justify-center items-center gap-x-3 gap-y-2">
+                <h1 className="text-[32px] sm:text-4xl md:text-6xl lg:text-[48px] font-medium tracking-tight text-[#171717] mb-2 leading-[1.1] flex flex-wrap justify-center items-center gap-x-2 gap-y-1 sm:gap-x-3 sm:gap-y-2">
                     <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>Recruitment.</motion.span>
                     <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>Smarter.</motion.span>
                     <div className="basis-full h-0"></div> {/* Line break */}
@@ -86,11 +80,11 @@ const Hero: React.FC = () => {
                     className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center relative"
                 >
                     {/* Floating Animated Cursors - Tightened to stay strictly on text */}
-                    <FloatingCursor label="Agency" color="#8b5cf6" delay={0} initialPos={{ x: -250, y: -180 }} direction="right" />
-                    <FloatingCursor label="Recruiter" color="#3b82f6" delay={2} initialPos={{ x: 300, y: -180 }} />
-                    <FloatingCursor label="Organization" color="#06b6d4" delay={5} initialPos={{ x: 280, y: -30 }} />
+                    <FloatingCursor label="Agency" color="#8b5cf6" delay={0} initialPos={{ x: -380, y: -180 }} direction="right" />
+                    <FloatingCursor label="Recruiter" color="#3b82f6" delay={2} initialPos={{ x: 400, y: -180 }} />
+                    <FloatingCursor label="Organization" color="#06b6d4" delay={5} initialPos={{ x: 380, y: -30 }} />
                     <FloatingCursor label="Candidate" color="#10b981" delay={8} initialPos={{ x: 200, y: 150 }} />
-                    <FloatingCursor label="Interviewer" color="#f43f5e" delay={3} initialPos={{ x: -280, y: 90 }} direction="right" />
+                    <FloatingCursor label="Interviewer" color="#f43f5e" delay={3} initialPos={{ x: -250, y: 90 }} direction="right" />
 
                     <motion.button
                         whileHover={{ scale: 1.05 }}
@@ -99,20 +93,6 @@ const Hero: React.FC = () => {
                         className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
                     >
                         Book a Demo
-                    </motion.button>
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className="w-full sm:w-auto text-neutral-700 text-sm font-medium px-6 py-3 rounded-full border border-neutral-200 hover:bg-neutral-50 transition-colors flex items-center justify-center gap-2"
-                    >
-                        Explore Platform
-                        <motion.div
-                            whileHover={{ x: 3 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        >
-                            <Icon icon="solar:arrow-right-linear" className="text-base" />
-                        </motion.div>
                     </motion.button>
                 </motion.div>
             </div>
@@ -125,7 +105,7 @@ const Hero: React.FC = () => {
                 className="mt-8 md:mt-12 relative w-full mx-auto hidden md:block"
             >
 
-                <div className="w-full h-auto bg-white rounded-3xl overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.1)] border border-neutral-200/50 transition-all duration-500">
+                <div className="w-full h-auto bg-white/40 backdrop-blur-md rounded-3xl overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.1)] border border-neutral-200/50 transition-all duration-500 opacity-90">
                     <img
                         src={HeroVisual}
                         alt="HireSync Dashboard Platform"

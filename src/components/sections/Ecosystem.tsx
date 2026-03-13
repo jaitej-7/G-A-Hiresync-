@@ -19,7 +19,7 @@ const Ecosystem: React.FC = () => {
         mass: 1.5
     });
 
-    // The background SVG scales down from 1.5 to 0.8 as the images detach
+    // The background SVG scales up as you scroll — original desktop range
     const bgScale = useTransform(smoothProgress, [0, .5], [0.5, 1.5]);
 
     // Top Cube (Image 1) translates straight UP
@@ -31,7 +31,7 @@ const Ecosystem: React.FC = () => {
     const img2Y = useTransform(smoothProgress, [0, 1], [0, 20]);
 
     return (
-        <section className="py-24">
+        <section className="py-24 overflow-x-hidden">
             <div className="max-w-[1200px] mx-auto px-6">
                 <div className="flex flex-col items-center text-center">
                     <StickyHeading
@@ -54,15 +54,17 @@ const Ecosystem: React.FC = () => {
                 <div ref={sectionRef} className="relative h-[150vh] md:h-[200vh] -mt-16">
                     <div className="sticky top-[200px] h-screen flex justify-center">
                         {/* Central 3D Visual with Stack Details */}
-                        <div className="relative z-10 w-[450px] h-[450px] flex items-center justify-center p-8">
+                        <div className="relative z-10 w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center p-8 overflow-hidden md:overflow-visible">
 
-                            {/* Background SVG Scaling */}
-                            <motion.img
-                                style={{ scale: bgScale }}
-                                src={BgSvg}
-                                alt="Ecosystem Background"
-                                className="absolute w-[140%] h-[140%] object-contain -z-50 pointer-events-none"
-                            />
+                            {/* Background SVG Scaling — clipped on mobile, visible on desktop */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] overflow-hidden md:overflow-visible pointer-events-none -z-50">
+                                <motion.img
+                                    style={{ scale: bgScale }}
+                                    src={BgSvg}
+                                    alt="Ecosystem Background"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
 
                             {/* Stacked Image 2 (Moves Bottom Right) */}
                             <motion.img

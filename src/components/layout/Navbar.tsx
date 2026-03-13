@@ -71,16 +71,15 @@ const Navbar: React.FC = () => {
                         </button>
                     </div>
 
-                    <Link to="/blog" className="hover:text-neutral-900 transition-colors px-3 py-2 rounded-full" onMouseEnter={() => handleMouseEnter(null)}>Blog</Link>
+                    <Link to="/pricing" className="hover:text-neutral-900 transition-colors px-3 py-2 rounded-full" onMouseEnter={() => handleMouseEnter(null)}>Pricing</Link>
                     <Link to="/about" className={`hover:text-neutral-900 transition-colors px-3 py-2 rounded-full ${isAboutPage ? 'text-blue-600 font-bold bg-blue-50/50' : ''}`} onMouseEnter={() => handleMouseEnter(null)}>About us</Link>
                     <Link to="/contact-us" className={`hover:text-neutral-900 transition-colors px-3 py-2 rounded-full ${isContactPage ? 'text-blue-600 font-bold bg-blue-50/50' : ''}`} onMouseEnter={() => handleMouseEnter(null)}>Contact</Link>
                 </div>
 
                 {/* Desktop Actions & Mobile Hamburger */}
                 <div className="flex items-center gap-4 md:gap-6">
-                    <button className="hidden md:block text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors">Log in</button>
                     <button className="hidden sm:block bg-neutral-900 text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-neutral-800 transition-all shadow-lg shadow-neutral-900/10 active:scale-95">
-                        Book a Demo
+                        Login
                     </button>
 
                     {/* Mobile Menu Toggle */}
@@ -120,14 +119,13 @@ const Navbar: React.FC = () => {
                         <div className="px-6 py-6 flex flex-col gap-4 text-sm font-medium text-neutral-600">
                             <Link to="/#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 flex justify-between">Features <Icon icon="solar:alt-arrow-right-linear" /></Link>
                             <Link to="/#use-cases" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 flex justify-between">Use Cases <Icon icon="solar:alt-arrow-right-linear" /></Link>
-                            <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100">Blog</Link>
+                            <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100">Pricing</Link>
                             <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 ${isAboutPage ? 'text-blue-600 font-bold' : ''}`}>About us</Link>
                             <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 ${isContactPage ? 'text-blue-600 font-bold' : ''}`}>Contact us</Link>
 
                             <div className="flex flex-col gap-3 mt-2">
-                                <button className="text-left font-medium hover:text-neutral-900 transition-colors py-2">Log in</button>
                                 <button className="bg-neutral-900 text-white font-medium px-6 py-3 rounded-full hover:bg-neutral-800 transition-all text-center sm:hidden shadow-lg shadow-neutral-900/10">
-                                    Book a Demo
+                                    Login
                                 </button>
                             </div>
                         </div>

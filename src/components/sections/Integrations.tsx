@@ -36,8 +36,8 @@ const Integrations: React.FC = () => {
             <div className="max-w-[1440px] mx-auto px-6 text-center">
                 <StickyHeading
                     badgeText="Ecosystem"
-                    title={["Seamlessly Integrated with", "Your Favorite Tools"]}
-                    gradientWord="Favorite Tools"
+                    title={["Seamlessly integrated with", "Your Favorite Tools"]}
+                    gradientWord="integrated"
                     subtitle="GA HireSync lives where you work. Connect with the tools your team already loves."
                 />
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Logo from '../../assets/Logo/logo.svg';
 
@@ -59,7 +60,7 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col">
                         <span className="text-base font-medium">Resource</span>
                         <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
-                            <span>Blogs</span>
+                            <span>Pricing</span>
                             <span>FAQs</span>
                             <span>Use Cases</span>
                             <span>Job Board</span>
@@ -71,7 +72,6 @@ const Footer: React.FC = () => {
                         <span className="text-base font-medium">Company</span>
                         <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
                             <span>About</span>
-                            <span>Pricing</span>
                             <span>Contact us</span>
                         </div>
                     </div>
@@ -88,12 +88,11 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col lg:flex-row justify-between gap-4 pb-[30px] text-xs text-[#FAF4EE]">
                     <span>© Copyright 2026. All Rights Reserved.</span>
 
-                    <div className="flex flex-wrap gap-[20px] text-white/70 cursor-pointer">
-                        <span>Privacy Policy</span>
-                        <span>Terms of Service</span>
-                        <span>Whistleblower Policy</span>
-                        <span>Cookie Policy</span>
-                        <span>Cookie Settings</span>
+                    <div className="flex flex-wrap gap-[20px] text-white/70">
+                        <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
+                        <Link to="/cancellation-policy" className="hover:text-white transition-colors">Cancellation Policy</Link>
+                        <Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
                     </div>
                 </div>
             </div>
