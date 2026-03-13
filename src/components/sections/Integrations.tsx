@@ -30,8 +30,8 @@ const Integrations: React.FC = () => {
                 />
 
                 {/* Added Creative Atmosphere Blobs */}
-                <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-gradient-to-br from-blue-50/20 to-transparent blur-[120px] -z-10" />
-                <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-gradient-to-tr from-purple-50/20 to-transparent blur-[120px] -z-10" />
+                <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-gradient-to-br from-blue-50/20 to-transparent blur-[80px] -z-10" />
+                <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-gradient-to-tr from-purple-50/20 to-transparent blur-[80px] -z-10" />
             </div>
             <div className="max-w-[1440px] mx-auto px-6 text-center">
                 <StickyHeading

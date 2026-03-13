@@ -12,15 +12,15 @@ const Ecosystem: React.FC = () => {
         offset: ["start start", "end end"] // Track as it moves through the viewport
     });
 
-    // Apply a springy, liquid-like smoothing effect to the scroll progress itself
+    // Apply a refined spring for better responsiveness and smoothness
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 40,
-        damping: 15,
-        mass: 1.5
+        stiffness: 60,
+        damping: 25,
+        mass: 1.2
     });
 
     // The background SVG scales up as you scroll — original desktop range
-    const bgScale = useTransform(smoothProgress, [0, .5], [0.5, 1.5]);
+    const bgScale = useTransform(smoothProgress, [0, .5], [0.2, 1.3]);
 
     // Top Cube (Image 1) translates straight UP
     const img1X = useTransform(smoothProgress, [0, 1], [0, 0]);
@@ -31,7 +31,7 @@ const Ecosystem: React.FC = () => {
     const img2Y = useTransform(smoothProgress, [0, 1], [0, 20]);
 
     return (
-        <section className="py-24 overflow-x-hidden">
+        <section className="py-24">
             <div className="max-w-[1200px] mx-auto px-6">
                 <div className="flex flex-col items-center text-center">
                     <StickyHeading
@@ -51,24 +51,22 @@ const Ecosystem: React.FC = () => {
                     />
                 </div>
 
-                <div ref={sectionRef} className="relative h-[150vh] md:h-[200vh] -mt-16">
-                    <div className="sticky top-[200px] h-screen flex justify-center">
+                <div ref={sectionRef} className="relative h-[200vh] md:h-[250vh] z-10">
+                    <div className="sticky top-[20vh] h-[80vh] flex items-center justify-center overflow-visible">
                         {/* Central 3D Visual with Stack Details */}
-                        <div className="relative z-10 w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center p-8 overflow-hidden md:overflow-visible">
+                        <div className="relative z-10 w-[280px] h-[280px] md:w-[450px] md:h-[450px] flex items-center justify-center p-8">
 
-                            {/* Background SVG Scaling — clipped on mobile, visible on desktop */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] overflow-hidden md:overflow-visible pointer-events-none -z-50">
-                                <motion.img
-                                    style={{ scale: bgScale }}
-                                    src={BgSvg}
-                                    alt="Ecosystem Background"
-                                    className="w-full h-full object-contain"
-                                />
-                            </div>
+                            {/* Background SVG Scaling - Responsive based on screen */}
+                            <motion.img
+                                style={{ scale: bgScale, willChange: 'transform' }}
+                                src={BgSvg}
+                                alt="Ecosystem Background"
+                                className="absolute w-[180%] h-[180%] md:w-[130%] md:h-[130%] max-w-none object-contain -z-50 pointer-events-none opacity-80"
+                            />
 
                             {/* Stacked Image 2 (Moves Bottom Right) */}
                             <motion.img
-                                style={{ x: img2X, y: img2Y }}
+                                style={{ x: img2X, y: img2Y, willChange: 'transform' }}
                                 src={ShapesImage2}
                                 alt="Ecosystem Layer 2"
                                 className="absolute w-full h-full object-contain drop-shadow-xl z-0"
@@ -76,7 +74,7 @@ const Ecosystem: React.FC = () => {
 
                             {/* Stacked Image 1 (Moves Top Left) */}
                             <motion.img
-                                style={{ x: img1X, y: img1Y }}
+                                style={{ x: img1X, y: img1Y, willChange: 'transform' }}
                                 src={ShapesImage1}
                                 alt="Ecosystem Layer 1"
                                 className="absolute w-full h-full object-contain drop-shadow-2xl z-10"

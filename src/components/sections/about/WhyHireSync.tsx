@@ -15,7 +15,7 @@ const WhyHireSync: React.FC = () => {
                         scale: [1, 1.1, 0.9, 1],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-blue-400/10 blur-[100px] rounded-full"
+                    className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-blue-400/10 blur-[70px] rounded-full"
                 />
                 <motion.div
                     animate={{
@@ -24,7 +24,7 @@ const WhyHireSync: React.FC = () => {
                         scale: [1.1, 0.9, 1.1, 1.1],
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-[10%] right-[10%] w-[600px] h-[600px] bg-purple-400/10 blur-[120px] rounded-full"
+                    className="absolute bottom-[10%] right-[10%] w-[600px] h-[600px] bg-purple-400/10 blur-[80px] rounded-full"
                 />
             </div>
 

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-[#071C50] pt-[50px] text-white">
             {/* Top Section */}
-            <div className="flex flex-col items-center text-[32px] lg:text-[48px] font-semibold mb-[60px] text-center">
+            <div className="flex flex-col items-center text-[32px] lg:text-[48px] font-semibold mb-[60px] text-center" id="footer-top">
                 <span>Work Easy</span>
                 <span>
                     Grow Further with{" "}
@@ -15,8 +15,8 @@ const Footer: React.FC = () => {
                 </span>
 
                 <div className="pb-[80px] mt-5">
-                    <button className="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm text-black transition-colors hover:bg-gray-200">
-                        Request a demo <Icon icon="solar:alt-arrow-right-linear" />
+                    <button className="flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-black transition-all hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-lg shadow-white/10">
+                        Login <Icon icon="solar:alt-arrow-right-linear" />
                     </button>
                 </div>
 
@@ -60,7 +60,6 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col">
                         <span className="text-base font-medium">Resource</span>
                         <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
-                            <span>Pricing</span>
                             <span>FAQs</span>
                             <span>Use Cases</span>
                             <span>Job Board</span>
@@ -72,6 +71,7 @@ const Footer: React.FC = () => {
                         <span className="text-base font-medium">Company</span>
                         <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
                             <span>About</span>
+                            <Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link>
                             <span>Contact us</span>
                         </div>
                     </div>

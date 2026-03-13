@@ -16,7 +16,7 @@ const AnimatedBackground: React.FC = () => {
                     repeat: Infinity,
                     ease: "linear"
                 }}
-                className="absolute top-[-5%] left-[10%] w-[45%] h-[45%] bg-blue-400/20 rounded-full blur-[110px]"
+                className="absolute top-[-5%] left-[10%] w-[45%] h-[45%] bg-blue-400/20 rounded-full blur-[80px]"
             />
             <motion.div
                 animate={{
@@ -29,7 +29,7 @@ const AnimatedBackground: React.FC = () => {
                     repeat: Infinity,
                     ease: "linear"
                 }}
-                className="absolute bottom-[-5%] right-[5%] w-[55%] h-[55%] bg-purple-400/15 rounded-full blur-[120px]"
+                className="absolute bottom-[-5%] right-[5%] w-[55%] h-[55%] bg-purple-400/15 rounded-full blur-[90px]"
             />
             <motion.div
                 animate={{
@@ -41,7 +41,7 @@ const AnimatedBackground: React.FC = () => {
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="absolute top-[15%] right-[15%] w-[25%] h-[25%] bg-cyan-400/15 rounded-full blur-[90px]"
+                className="absolute top-[15%] right-[15%] w-[25%] h-[25%] bg-cyan-400/15 rounded-full blur-[70px]"
             />
         </div>
     );

@@ -11,6 +11,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsConditionsPage from './pages/TermsConditionsPage';
 import CancellationPolicyPage from './pages/CancellationPolicyPage';
 import DisclaimerPage from './pages/DisclaimerPage';
+import PricingPage from './pages/PricingPage';
 
 import DynamicPage from './pages/DynamicPage';
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/faqs" element={<FAQsPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
 
             <Route path="/features/:slug" element={<DynamicPage type="features" />} />
             <Route path="/use-cases/:slug" element={<DynamicPage type="useCases" />} />

@@ -54,7 +54,8 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
       mouseRef.current.y = -1000; 
     });
 
-    const particleCount = window.innerWidth > 768 ? 600 : 300;
+    const isMobile = window.innerWidth <= 768;
+    const particleCount = isMobile ? 500 : 1000;
     const baseRadius = Math.min(window.innerWidth, window.innerHeight) * 0.35;
 
     particlesRef.current = Array.from({ length: particleCount }, () => ({
@@ -115,18 +116,21 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
         const sx = width / 2 + wx * perspective;
         const sy = height / 2 + wy * perspective;
 
-        // Mouse repulsion
-        let dx = sx - mouseRef.current.x;
-        let dy = sy - mouseRef.current.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
+        // Mouse repulsion - optimized distance check
+        const dx = sx - mouseRef.current.x;
+        const dy = sy - mouseRef.current.y;
         const mouseRadius = 120;
-
-        if (dist < mouseRadius) {
-          let force = (mouseRadius - dist) / mouseRadius;
-          let angle = Math.atan2(dy, dx);
-          p.vx += Math.cos(angle) * force * 5;
-          p.vy += Math.sin(angle) * force * 5;
-          p.vz += (Math.random() - 0.5) * force * 7;
+        
+        // Fast pre-check before square root
+        if (Math.abs(dx) < mouseRadius && Math.abs(dy) < mouseRadius) {
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouseRadius) {
+            const force = (mouseRadius - dist) / mouseRadius;
+            const angle = Math.atan2(dy, dx);
+            p.vx += Math.cos(angle) * force * 5;
+            p.vy += Math.sin(angle) * force * 5;
+            p.vz += (Math.random() - 0.5) * force * 7;
+          }
         }
 
         // Spring back
@@ -134,10 +138,10 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
         p.vy += (0 - p.offsetY) * 0.05;
         p.vz += (0 - p.offsetZ) * 0.05;
 
-        // Friction
-        p.vx *= 0.88;
-        p.vy *= 0.88;
-        p.vz *= 0.88;
+        // Friction (Reduced slightly for smoother settling)
+        p.vx *= 0.85;
+        p.vy *= 0.85;
+        p.vz *= 0.85;
 
         p.offsetX += p.vx;
         p.offsetY += p.vy;
