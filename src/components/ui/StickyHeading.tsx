@@ -15,7 +15,15 @@ const Word = ({ children, progress, range, isGradient }: { children: string, pro
     if (isGradient) {
         return (
             <span className="relative inline-block mr-[0.25em]">
-                <span className="text-gradient text-transparent bg-clip-text">{children}</span>
+                {/* Base color for gradient words before reveal */}
+                <span className="text-[#7b7b7b] opacity-100">{children}</span>
+                {/* Gradient color revealed on scroll */}
+                <motion.span 
+                    style={{ opacity }} 
+                    className="absolute left-0 top-0 text-gradient text-transparent bg-clip-text w-full h-full"
+                >
+                    {children}
+                </motion.span>
             </span>
         );
     }
@@ -114,8 +122,9 @@ export const StickyHeading: React.FC<StickyHeadingProps> = ({
                                 const end = start + (0.7 / totalWords);
                                 globalWordIndex++;
 
-                                const cleanWord = word.replace(/[^a-zA-Z0-9-]/g, '');
-                                const isGrad = Boolean(gradientWord && cleanWord.toLowerCase() === gradientWord.toLowerCase());
+                                const cleanWord = word.replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
+                                const gradWords = gradientWord ? gradientWord.split(' ').map(w => w.replace(/[^a-zA-Z0-9-]/g, '').toLowerCase()) : [];
+                                const isGrad = gradWords.includes(cleanWord);
 
                                 return (
                                     <Word key={wordIndexInLine} progress={smoothProgress} range={[start, end]} isGradient={isGrad}>

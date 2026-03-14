@@ -37,15 +37,13 @@ const Ecosystem: React.FC = () => {
                     <StickyHeading
                         badgeText="About G A Hiresync"
                         title={[
-                            "AI-Driven platform Design to automate",
-                            "the workflow of Recruitment Process"
+                            "Built for Recruiters. Powered by AI.",
+                            "Designed for Scale."
                         ]}
-                        gradientWord="AI-Driven"
+                        gradientWord="Powered by AI"
                         subtitle={
                             <>
-                                Streamline your hiring process with our AI-driven platform. <br />
-                                Find the perfect candidate, faster and more efficiently. <br />
-                                Get started today!
+                                GA HireSync was born out of frustration with disconnected tools, messy spreadsheets, and slow hiring cycles. We built a single platform that handles everything — from sourcing to signed offer — so your team can focus on what actually matters: placing the right people
                             </>
                         }
                     />

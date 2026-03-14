@@ -1,22 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import Logo from '../../assets/Logo/logo.svg';
+import FooterLogo from '../../assets/Logo/footer logo.svg';
 
 const Footer: React.FC = () => {
     return (
         <footer className="bg-[#071C50] pt-[50px] text-white">
             {/* Top Section */}
-            <div className="flex flex-col items-center text-[32px] lg:text-[48px] font-semibold mb-[60px] text-center" id="footer-top">
-                <span>Work Easy</span>
-                <span>
-                    Grow Further with{" "}
-                    <span className="text-[#F46EBE]">Hire Sync</span>
-                </span>
+            <div className="flex flex-col items-center mb-[60px] text-center px-6" id="footer-top">
+                <h2 className="text-[32px] lg:text-[48px] font-semibold mb-4 text-white leading-tight flex flex-col items-center">
+                    <span>Ready to Transform</span>
+                    <span>
+                        the Way You <span className="text-gradient bg-clip-text text-transparent italic">Hire.</span>
+                    </span>
+                </h2>
+                <p className="text-white/60 text-base md:text-lg max-w-2xl mb-10 font-light leading-relaxed">
+                    Join hundreds of recruiting teams who’ve cut time-to-hire, reduced drop-offs, and built stronger pipelines with GA HireSync.
+                </p>
 
-                <div className="pb-[80px] mt-5">
-                    <button className="flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-black transition-all hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-lg shadow-white/10">
-                        Login <Icon icon="solar:alt-arrow-right-linear" />
+                <div className="pb-[60px]">
+                    <button className="flex items-center gap-2 rounded-full bg-white px-10 py-4 text-sm font-bold text-[#071C50] uppercase tracking-widest transition-all hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-xl shadow-white/5">
+                        Get Started <Icon icon="solar:alt-arrow-right-linear" className="text-lg" />
                     </button>
                 </div>
 
@@ -24,55 +28,55 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Middle Section */}
-            <div className="flex flex-col lg:flex-row gap-[10vw] lg:gap-[30vw] pb-[10vh] px-[4vw]">
+            <div className="flex flex-col lg:flex-row gap-[10vw] lg:gap-[13vw] pb-[10vh] px-[8vw] justify-between">
                 {/* Logo + Social */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center lg:items-start shrink-0">
                     <img
-                        src={Logo}
+                        src={FooterLogo}
                         alt="Hire Sync Logo"
-                        className="mb-4 shrink-0 h-10 md:h-12 w-auto"
+                        className="mb-4 shrink-0 h-12 md:h-16 w-auto"
                     />
 
                     <div className="flex gap-[15px] cursor-pointer">
-                        <Icon icon="hugeicons:new-twitter" className="h-8 w-8 text-white hover:text-white/80" />
-                        <Icon icon="ri:linkedin-fill" className="h-8 w-8 text-white hover:text-white/80" />
-                        <Icon icon="ri:facebook-fill" className="h-8 w-8 text-white hover:text-white/80" />
-                        <Icon icon="ri:instagram-line" className="h-8 w-8 text-white hover:text-white/80" />
+                        <Icon icon="hugeicons:new-twitter" className="h-8 w-8 text-white hover:text-white/80 transition-colors" />
+                        <Icon icon="ri:linkedin-fill" className="h-8 w-8 text-white hover:text-white/80 transition-colors" />
+                        <Icon icon="ri:facebook-fill" className="h-8 w-8 text-white hover:text-white/80 transition-colors" />
+                        <Icon icon="ri:instagram-line" className="h-8 w-8 text-white hover:text-white/80 transition-colors" />
                     </div>
                 </div>
 
                 {/* Menu */}
-                <div className="mt-[40px] flex flex-col md:flex-row md:gap-[16vw] md:pl-[8vw] lg:flex-row lg:gap-[8vw] pr-[10vw]">
-                    {/* Column 1 */}
+                <div className="mt-[40px] lg:mt-0 flex flex-col md:flex-row flex-wrap gap-y-10 md:gap-x-[10vw] lg:gap-x-[5vw] xl:gap-x-[8vw]">
+                    {/* Column 1 - Features */}
                     <div className="flex flex-col">
-                        <span className="text-base font-medium">
-                            How it works
-                        </span>
-                        <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
-                            <span>For Agencies</span>
-                            <span>For Recruiter</span>
-                            <span>For Organization</span>
-                            <span>For Candidates</span>
+                        <span className="text-base font-medium">Features</span>
+                        <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80">
+                            <Link to="/features/ai-recruitment-tools" className="hover:text-white transition-colors">AI Recruitment</Link>
+                            <Link to="/features/candidate-intelligence" className="hover:text-white transition-colors">Candidate Intel</Link>
+                            <Link to="/features/recruiter-insights" className="hover:text-white transition-colors">Hiring Insights</Link>
+                            <Link to="/features/job-post-negotiations" className="hover:text-white transition-colors">Offer Management</Link>
                         </div>
                     </div>
 
-                    {/* Column 2 */}
+
+
+                    {/* Column 3 - Resource */}
                     <div className="flex flex-col">
                         <span className="text-base font-medium">Resource</span>
                         <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
-                            <span>FAQs</span>
+                            <Link to="/faqs" className="hover:text-white transition-colors">FAQs</Link>
                             <span>Use Cases</span>
                             <span>Job Board</span>
                         </div>
                     </div>
 
-                    {/* Column 3 */}
+                    {/* Column 4 - Company */}
                     <div className="flex flex-col">
                         <span className="text-base font-medium">Company</span>
                         <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
-                            <span>About</span>
+                            <Link to="/about" className="hover:text-white transition-colors">About</Link>
                             <Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link>
-                            <span>Contact us</span>
+                            <Link to="/contact-us" className="hover:text-white transition-colors">Contact us</Link>
                         </div>
                     </div>
                 </div>

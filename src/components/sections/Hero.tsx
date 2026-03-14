@@ -55,12 +55,12 @@ const Hero: React.FC = () => {
                 </motion.div>
 
                 <h1 className="text-[32px] sm:text-4xl md:text-6xl lg:text-[48px] font-medium tracking-tight text-[#171717] mb-2 leading-[1.1] flex flex-wrap justify-center items-center gap-x-2 gap-y-1 sm:gap-x-3 sm:gap-y-2">
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>Recruitment.</motion.span>
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>Smarter.</motion.span>
+                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>Your Next.</motion.span>
+                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>Great Hire.</motion.span>
                     <div className="basis-full h-0"></div> {/* Line break */}
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>Faster.</motion.span>
+                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>starts.</motion.span>
                     <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple animate-gradient-text">In Sync.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple animate-gradient-text">Here.</span>
                     </motion.span>
                 </h1>
 

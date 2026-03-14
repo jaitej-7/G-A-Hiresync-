@@ -129,35 +129,35 @@ const ModernFeatures: React.FC = () => {
             id: '1',
             headerTitle: 'AI RECRUITMENT',
             heading: 'Generative JD',
-            bodyText: 'Generate perfectly structured, high-converting job descriptions in seconds using models trained on successful hiring patterns across industries.',
+            bodyText: 'Describe the role in plain language and get a complete, structured job description ready to post — tailored to your industry and seniority level.',
             image: JDGenImg
         },
         {
             id: '2',
             headerTitle: 'PROFILE SEARCH',
             heading: 'AI Profile Search',
-            bodyText: 'Find the perfect match using natural language queries. Search your entire talent pool with AI that understands intent, not just keywords.',
+            bodyText: 'Forget Boolean strings. Just type what you’re looking for in plain English and let the AI surface the most relevant candidates from your entire talent pool.',
             image: ContainerImg
         },
         {
             id: '3',
             headerTitle: 'SUMMARIZATION',
             heading: 'AI Job Post Summary',
-            bodyText: 'Instantly distill lengthy job postings and resumes into sharp, actionable candidate summaries — highlighting skills, strengths, and gaps.',
+            bodyText: 'Get an end-to-end pulse on every job post. Our AI summarizes the entire lifecycle — from profiles sent and pending processing to final selections, rejections, and required replacements.',
             image: SummeryPopupImg
         },
         {
             id: '4',
             headerTitle: 'RESUME PARSING',
             heading: 'Resume Parsing',
-            bodyText: 'Automatically extract structured data from any resume format. Skills, experience, education, and contact details parsed with AI precision.',
+            bodyText: 'Whether it’s a Word doc, PDF — GA HireSync reads it all and turns it into clean, structured candidate data automatically.',
             image: ResumeParsingImg
         },
         {
             id: '5',
             headerTitle: 'JD PARSING',
             heading: 'Job Description Parsing',
-            bodyText: 'Decode complex JDs into structured requirements — automatically identifying must-have skills, experience levels, and role expectations.',
+            bodyText: 'Feed in any job description and instantly get a breakdown of required skills, experience benchmarks, and role expectations — no manual tagging needed.',
             image: JDParsingImg
         },
     ];
@@ -167,21 +167,21 @@ const ModernFeatures: React.FC = () => {
             id: '6',
             headerTitle: 'RESUME BANK',
             heading: 'Resume Bank',
-            bodyText: 'Centralize resumes from all sources into a single, searchable database with automated deduplication and AI-powered indexing.',
+            bodyText: 'One searchable home for every resume you’ve ever received — automatically deduplicated, AI-indexed, and ready to search the moment a new role comes in.',
             image: ResumeBankImg
         },
         {
             id: '7',
             headerTitle: 'CANDIDATE PROFILE',
             heading: 'Candidate Profile',
-            bodyText: 'Maintain rich, structured candidate profiles with full interaction history, previous applications, and AI-extracted skill insights.',
+            bodyText: 'Every touchpoint, application, and AI insight lives on a single candidate card — so any recruiter on your team can pick up right where you left off.',
             image: CandProfileImg
         },
         {
             id: '8',
             headerTitle: 'COMPARISON',
             heading: 'Resume Comparison',
-            bodyText: 'Side-by-side AI comparison of multiple candidates — instantly surface the best match against your job requirements.',
+            bodyText: 'Put your top candidates side by side and let AI score them against your job requirements — so the final shortlist is based on fit, not familiarity.',
             image: ResumeComparisonImg
         },
     ];
@@ -191,21 +191,21 @@ const ModernFeatures: React.FC = () => {
             id: '9',
             headerTitle: 'ANALYTICS',
             heading: 'Hiring Analytics',
-            bodyText: 'Comprehensive dashboards that track time-to-hire, source quality, and pipeline performance across all your open roles.',
+            bodyText: 'From time-to-fill to offer acceptance rates, get the full picture of how your recruitment engine is performing — broken down by role, team, or time period.',
             image: HiringAnalyticsImg
         },
         {
             id: '10',
             headerTitle: 'PERFORMANCE',
             heading: 'Recruiter Performance',
-            bodyText: 'Monitor individual recruiter productivity, placement rates, and activity metrics to keep your team performing at their best.',
+            bodyText: 'See exactly how each recruiter is performing — calls made, profiles submitted, placements closed — and coach your team with real data behind you. A live ranking of recruiters by successful hires, candidate engagement, and interview conversions — celebrating top performers and keeping the whole team motivated.',
             image: RecruiterPerformanceImg
         },
         {
             id: '11',
             headerTitle: 'FUNNEL',
             heading: 'Funnel Analysis',
-            bodyText: 'Visualize candidate drop-off at every stage of your hiring funnel and identify bottlenecks with AI-powered recommendations.',
+            bodyText: 'Spot where candidates are dropping out of your pipeline before you lose them. AI flags the weak points and suggests where to act first.',
             image: FunnelAnalysisImg
         },
     ];
@@ -214,15 +214,15 @@ const ModernFeatures: React.FC = () => {
         {
             id: '12',
             headerTitle: 'NEGOTIATIONS',
-            heading: 'T&C Negotiations',
-            bodyText: 'Streamline terms and conditions negotiation with structured workflows, version tracking, and real-time collaboration between all stakeholders.',
+            heading: 'Agency–Organization Terms & Conditions',
+            bodyText: 'Agencies and organizations define and agree on employment terms — salary, benefits, joining date, and work conditions — in one structured, version-tracked thread.',
             image: TCNegotiationsImg
         },
         {
             id: '13',
             headerTitle: 'OFFER MANAGEMENT',
-            heading: 'Offer Negotiations',
-            bodyText: 'Manage the full offer lifecycle from initial package creation to final sign-off, with approval flows and counter-offer tracking.',
+            heading: 'Job Post Changes & Client Negotiations',
+            bodyText: 'Agency managers and clients can collaboratively revise job post details before going live. Every change — title, scope, salary, location — is recorded for full transparency.',
             image: JobPostNegotiationsImg
         },
     ];
@@ -232,9 +232,9 @@ const ModernFeatures: React.FC = () => {
             <div className="max-w-[1440px] mx-auto px-6 w-full pt-24 flex flex-col items-center text-center">
                 <StickyHeading
                     badgeText="Features"
-                    title={["Platform Features that", "Power Your Hiring"]}
+                    title={["Platform Features", "Everything You Need to Hire Better, Faster."]}
                     gradientWord="Features"
-                    subtitle="Everything you need to find, evaluate, and hire top talent in one unified platform."
+                    subtitle="GA HireSync is more than an ATS. It’s a full recruitment intelligence suite built for agencies and in-house teams alike."
                 />
             </div>
 
@@ -242,14 +242,14 @@ const ModernFeatures: React.FC = () => {
                 <FeatureSection
                     badge="AI Tools"
                     title="AI Recruitment Tools"
-                    description="Harness the power of generative AI to eliminate manual work and find high-quality talent faster than ever before."
+                    description="Stop starting from scratch. Our generative AI handles the grunt work — writing JDs, surfacing candidates, and summarizing applications — so your team ships more hires with less effort."
                     items={block1Items}
                 />
 
                 <FeatureSection
                     badge="Intelligence"
                     title="Candidate Intelligence"
-                    description="Turn unstructured resumes into a competitive advantage with automated parsing, deep profiling, and instant comparison tools."
+                    description="Your talent pool is one of your most valuable assets. GA HireSync makes sure every candidate in it is fully profiled, searchable, and ready to match the moment the right role opens up."
                     items={block2Items}
                     reverse
                 />
@@ -257,14 +257,14 @@ const ModernFeatures: React.FC = () => {
                 <FeatureSection
                     badge="Insights"
                     title="Recruiter Insights"
-                    description="Data-driven visibility into your entire hiring operation — track performance, analyse funnels, and make smarter decisions."
+                    description="You can’t improve what you can’t measure. GA HireSync gives hiring leads full visibility into team performance, pipeline health, and where candidates are falling off — all in one place."
                     items={block3Items}
                 />
 
                 <FeatureSection
                     badge="Negotiations"
                     title="Job Post Negotiations"
-                    description="Close more candidates faster with structured negotiation workflows for both terms and compensation, from first offer to final signature."
+                    description="The final stretch of any hire shouldn’t stall over back-and-forth emails. GA HireSync gives you structured, trackable workflows to move from verbal offer to signed contract without the chaos."
                     items={block4Items}
                     reverse
                 />

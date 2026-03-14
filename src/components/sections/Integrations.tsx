@@ -36,9 +36,9 @@ const Integrations: React.FC = () => {
             <div className="max-w-[1440px] mx-auto px-6 text-center">
                 <StickyHeading
                     badgeText="Ecosystem"
-                    title={["Seamlessly integrated with", "Your Favorite Tools"]}
-                    gradientWord="integrated"
-                    subtitle="GA HireSync lives where you work. Connect with the tools your team already loves."
+                    title={["Works With the Tools ", "Your Team Already Uses."]}
+                    gradientWord="Tools"
+                    subtitle="No ripping and replacing. GA HireSync plugs into your existing stack so adoption is instant and your team never skips a beat."
                 />
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mt-8 relative z-30">

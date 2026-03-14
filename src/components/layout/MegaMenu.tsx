@@ -14,6 +14,13 @@ interface MegaMenuProps {
 const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onMouseEnter, onMouseLeave, activeMenu }) => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
+  // Set initial hovered item when menu opens
+  useEffect(() => {
+    if (isOpen && activeMenu && menuData[activeMenu]?.items.length > 0) {
+      setHoveredItem(menuData[activeMenu].items[0].slug);
+    }
+  }, [isOpen, activeMenu]);
+
   // Reset hover state when menu closes
   useEffect(() => {
     if (!isOpen) {
@@ -25,119 +32,195 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onMouseEnter, onMouseLeave,
 
   if (!data) return null;
 
-  // Features uses a 3-column layout (items, preview, details), Use Cases uses 2-column (items, preview)
   const isFeatures = activeMenu === 'features';
+  const activeItem = data.items.find(item => item.slug === hoveredItem) || data.items[0];
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.98, y: -10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.98, y: -10 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute left-[50%] top-full pt-4 -translate-x-[50%] z-50 w-full max-w-5xl"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
+          role="menu"
         >
-          <div className="bg-white/90 backdrop-blur-xl border border-neutral-200/60 shadow-[0_32px_80px_-20px_rgba(0,0,0,0.15)] rounded-3xl p-6 relative overflow-hidden flex gap-4">
+          {/* Main Container - Solid White, No Glassmorphism */}
+          <div className="bg-white border border-neutral-200 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] rounded-[40px] p-8 relative overflow-hidden flex divide-x divide-neutral-100 min-h-[500px]">
             
-            {/* Background Texture inside menu */}
-            <div className="absolute inset-0 bg-grid-neutral-200/[0.2] bg-[size:24px_24px] pointer-events-none"></div>
-
-            {/* Left Column: Menu Items */}
-            <div className="w-1/3 flex flex-col gap-1 relative z-10">
-              <div className="px-4 py-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-brand-purple">{data.title}</span>
+            {/* Minimal Background Grid */}
+            <div className="absolute inset-0 bg-grid-neutral-900/[0.015] pointer-events-none"></div>
+            
+            {/* Column 1: Categories (30%) */}
+            <div className="w-[30%] pr-6 relative z-10 flex flex-col justify-center">
+              <div className="px-4 py-2 mb-4">
+                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-400">Categories</span>
               </div>
               
-              {data.items.map((item) => (
-                <Link
-                  key={item.slug}
-                  to={`/${activeMenu === 'features' ? 'features' : 'use-cases'}/${item.slug}`}
-                  onMouseEnter={() => setHoveredItem(item.slug)}
-                  className={`
-                    flex items-center gap-3 p-3 rounded-xl transition-all duration-200
-                    ${hoveredItem === item.slug ? 'bg-neutral-50 shadow-sm border border-neutral-200/50' : 'hover:bg-neutral-50 border border-transparent'}
-                  `}
-                >
-                  <div className={`
-                    w-10 h-10 rounded-lg flex items-center justify-center transition-colors
-                    ${hoveredItem === item.slug ? 'bg-white text-brand-purple shadow-sm' : 'bg-neutral-100/50 text-neutral-500'}
-                  `}>
-                    <Icon icon={item.icon} className="text-xl" />
-                  </div>
-                  <div>
-                    <h4 className={`text-sm font-semibold transition-colors ${hoveredItem === item.slug ? 'text-neutral-900' : 'text-neutral-700'}`}>
-                      {item.title}
-                    </h4>
-                  </div>
-                  {hoveredItem === item.slug && (
-                    <motion.div layoutId="menuArrow" className="ml-auto text-brand-purple">
-                      <Icon icon="solar:alt-arrow-right-linear" />
-                    </motion.div>
-                  )}
-                </Link>
-              ))}
+              <div className="flex flex-col gap-2">
+                {data.items.map((item) => (
+                  <Link
+                    key={item.slug}
+                    to={`/${activeMenu === 'features' ? 'features' : 'use-cases'}/${item.slug}`}
+                    onMouseEnter={() => setHoveredItem(item.slug)}
+                    className={`
+                      relative flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 group
+                      ${hoveredItem === item.slug ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'}
+                    `}
+                  >
+                    {hoveredItem === item.slug && (
+                      <motion.div 
+                        layoutId="activePill"
+                        className="absolute inset-0 bg-neutral-50/80 border border-neutral-100 shadow-sm rounded-2xl -z-10"
+                        transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}
+                      />
+                    )}
+                    <div className={`
+                      w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300
+                      ${hoveredItem === item.slug ? 'bg-brand-purple text-white shadow-xl shadow-brand-purple/20' : 'bg-neutral-50 text-neutral-400 group-hover:bg-neutral-100'}
+                    `}>
+                      <Icon icon={item.icon} className="text-2xl" />
+                    </div>
+                    <span className="text-base font-bold tracking-tight">{item.title}</span>
+                    <Icon icon="solar:alt-arrow-right-linear" className={`ml-auto text-xl transition-all ${hoveredItem === item.slug ? 'translate-x-0' : '-translate-x-2'}`} />
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            {/* Middle/Preview Column */}
-            <div className={`${isFeatures ? 'w-1/3' : 'w-2/3'} relative z-10 pl-4 border-l border-neutral-100 flex flex-col justify-center`}>
-               <AnimatePresence mode="wait">
-                 {data.items.map((item) => (
-                   hoveredItem === item.slug || (hoveredItem === null && item === data.items[0]) ? (
-                     <motion.div
-                       key={item.slug}
-                       initial={{ opacity: 0, x: -10 }}
-                       animate={{ opacity: 1, x: 0 }}
-                       exit={{ opacity: 0, x: 10 }}
-                       transition={{ duration: 0.2 }}
-                       className="flex flex-col gap-4"
-                     >
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-brand-blue/10 to-brand-purple/10 mb-2">
-                           <Icon icon={item.icon} className="text-3xl text-brand-purple" />
+            {/* Column 2: Capabilities (40%) */}
+            <div className="w-[40%] px-10 relative z-10 flex flex-col justify-center">
+              <div className="py-2 mb-8 flex items-center justify-between">
+                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-400">Capabilities</span>
+                <AnimatePresence mode="wait">
+                  <motion.span 
+                    key={activeItem.slug}
+                    initial={{ scale: 0.9 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0.9 }}
+                    className="text-[10px] font-black text-brand-purple bg-brand-purple/10 px-2.5 py-1 rounded-md uppercase tracking-wider"
+                  >
+                    {activeItem.title.split(' ')[0]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeItem.slug}
+                  initial={{ x: 10, opacity: 1 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -10, opacity: 1 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="grid grid-cols-1 gap-8"
+                >
+                  {isFeatures && activeItem.capabilities ? (
+                    activeItem.capabilities.map((cap, idx) => (
+                      <div key={idx} className="group/cap flex gap-5 p-2 -m-2 rounded-2xl hover:bg-neutral-50 transition-colors">
+                        <div className="mt-1 w-10 h-10 rounded-xl bg-white border border-neutral-100 shadow-sm flex items-center justify-center shrink-0 group-hover/cap:scale-110 group-hover/cap:shadow-md transition-all">
+                          <Icon icon={cap.icon} className="text-xl text-brand-purple" />
                         </div>
-                        <h3 className="text-xl font-bold text-neutral-900">{item.title}</h3>
-                        <p className="text-sm text-neutral-500 leading-relaxed pr-8">
-                           {item.description}
-                        </p>
+                        <div className="space-y-1.5">
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm font-black text-neutral-900 leading-none tracking-tight">{cap.title}</h4>
+                            {cap.badge && (
+                              <span className="text-[9px] font-black px-1.5 py-0.5 bg-brand-blue/10 text-brand-blue rounded uppercase tracking-tighter">
+                                {cap.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-neutral-500 leading-relaxed pr-6 font-medium">
+                            {cap.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="flex flex-col gap-6">
+                        <div className="space-y-3">
+                            <h3 className="text-2xl font-black text-neutral-900 tracking-tight">{activeItem.title}</h3>
+                            <p className="text-base text-neutral-500 leading-relaxed font-medium">
+                                {activeItem.description}
+                            </p>
+                        </div>
+                        <Link 
+                            to={`/use-cases/${activeItem.slug}`}
+                            className="text-sm font-bold text-brand-purple flex items-center gap-2 hover:gap-3 transition-all w-fit group"
+                        >
+                            View Case Study
+                            <Icon icon="solar:arrow-right-linear" className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Column 3: Feature Spotlight (30%) - Minimal SVG Animation */}
+            <div className="w-[30%] pl-10 relative z-10 flex flex-col pt-2 justify-center">
+                <div className="mb-6">
+                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-400">Spotlight</span>
+                </div>
+                
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeItem.slug}
+                        initial={{ scale: 0.95 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 1.05 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative flex-1 bg-neutral-50 rounded-[32px] border border-neutral-100 p-8 flex flex-col items-center justify-center text-center overflow-hidden group/preview"
+                    >
+                        {/* Minimal SVG Background Animation */}
+                        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <motion.path
+                                d="M 0 10 L 100 10"
+                                stroke="rgba(124, 58, 237, 0.08)"
+                                strokeWidth="0.5"
+                                animate={{ y: [0, 80, 0] }}
+                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                            />
+                            <motion.path
+                                d="M 0 50 L 100 50"
+                                stroke="rgba(59, 130, 246, 0.08)"
+                                strokeWidth="0.5"
+                                animate={{ y: [-40, 40, -40] }}
+                                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                            />
+                            {/* Circuit nodes */}
+                            <motion.circle cx="10" cy="10" r="1.5" fill="rgba(124, 58, 237, 0.15)" animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 3, repeat: Infinity }} />
+                            <motion.circle cx="90" cy="90" r="1.5" fill="rgba(59, 130, 246, 0.15)" animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }} />
+                        </svg>
+
+                        <div className="relative mb-8">
+                            <div className="absolute inset-0 border-2 border-brand-purple/10 rounded-[2rem] scale-150 animate-pulse"></div>
+                            
+                            <div className="w-28 h-28 rounded-[2rem] bg-white border border-neutral-200 shadow-sm flex items-center justify-center relative z-10 group-hover/preview:rotate-6 transition-transform duration-700">
+                                <Icon icon={activeItem.icon} className="text-6xl text-brand-purple" />
+                            </div>
+                        </div>
+                        
+                        <div className="space-y-2.5 relative z-10">
+                            <h4 className="text-xl font-black text-neutral-900 tracking-tight leading-tight">{activeItem.title}</h4>
+                            <div className="flex items-center justify-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-brand-purple animate-pulse"></span>
+                                <p className="text-[10px] text-neutral-400 font-black uppercase tracking-[0.2em]">AI Evolution Active</p>
+                            </div>
+                        </div>
                         
                         <Link 
-                            to={`/${activeMenu === 'features' ? 'features' : 'use-cases'}/${item.slug}`}
-                            className="mt-4 text-sm font-semibold text-brand-purple flex items-center gap-1 hover:gap-2 transition-all w-fit"
+                            to={`/${activeMenu}/${activeItem.slug}`}
+                            className="mt-10 px-8 py-3 bg-neutral-900 text-white rounded-full text-xs font-bold flex items-center gap-2.5 hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/20 active:scale-95 z-20"
                         >
-                            Explore {item.title}
-                            <Icon icon="solar:arrow-right-linear" />
+                            Explore Module
+                            <Icon icon="solar:arrow-right-linear" className="text-lg" />
                         </Link>
-                     </motion.div>
-                   ) : null
-                 ))}
-               </AnimatePresence>
+                    </motion.div>
+                </AnimatePresence>
             </div>
-
-            {/* Optional Right Column for Features */}
-            {isFeatures && (
-                <div className="w-1/3 relative z-10 bg-neutral-50 border border-neutral-100 rounded-2xl p-6 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-brand-purple/5"></div>
-                    <AnimatePresence mode="wait">
-                        {data.items.map((item) => (
-                        hoveredItem === item.slug || (hoveredItem === null && item === data.items[0]) ? (
-                            <motion.div
-                                key={item.slug}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.2 }}
-                                className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-4 text-center"
-                            >
-                                <Icon icon={item.icon} className="text-[80px] text-neutral-300 opacity-60" />
-                                <div className="text-xs font-medium text-neutral-400 uppercase tracking-widest">{item.title} Preview</div>
-                            </motion.div>
-                        ) : null
-                        ))}
-                    </AnimatePresence>
-                </div>
-            )}
 
           </div>
         </motion.div>

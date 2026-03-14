@@ -27,7 +27,7 @@ const ASSETS = {
   Container: new URL('../assets/Features/AI recuriter tool/Container.svg', import.meta.url).href,
   SummeryPopup: new URL('../assets/Features/AI recuriter tool/Summery popup.svg', import.meta.url).href,
   ResumeParsing: new URL('../assets/Features/AI recuriter tool/Resume parshing.svg', import.meta.url).href,
-  
+
   CandProfile: new URL('../assets/Features/Candidate intelligence/Candidate Profile.svg', import.meta.url).href,
   ResumeBuilder: new URL('../assets/Features/Candidate intelligence/Resume Bank builder.svg', import.meta.url).href,
   ResumeBank: new URL('../assets/Features/Candidate intelligence/Resume Bnk.svg', import.meta.url).href,
@@ -48,62 +48,74 @@ export const menuData: { features: MenuSection; useCases: MenuSection } = {
       {
         slug: "ai-recruitment-tools",
         title: "AI Recruitment Tools",
-        description: "Harness the power of generative AI to eliminate manual work and find high-quality talent faster.",
+        description: "Stop starting from scratch. Our generative AI handles the grunt work — writing JDs, surfacing candidates, and summarizing applications — so your team ships more hires with less effort.",
         icon: "solar:magic-stick-3-bold-duotone",
         featureCards: [
-          { headerTitle: 'AI RECRUITMENT', heading: 'Generative JD', bodyText: 'Generate perfectly structured, high-converting job descriptions in seconds using models trained on successful hiring patterns across industries.', image: ASSETS.JDGen },
-          { headerTitle: 'PROFILE SEARCH', heading: 'AI Profile Search', bodyText: 'Find the perfect match using natural language queries. Search your entire talent pool with AI that understands intent, not just keywords.', image: ASSETS.Container },
-          { headerTitle: 'SUMMARIZATION', heading: 'AI Job Post Summary', bodyText: 'Instantly distill lengthy job postings and resumes into sharp, actionable candidate summaries — highlighting skills, strengths, and gaps.', image: ASSETS.SummeryPopup },
-          { headerTitle: 'RESUME PARSING', heading: 'Resume Parsing', bodyText: 'Automatically extract structured data from any resume format. Skills, experience, education, and contact details parsed with AI precision.', image: ASSETS.ResumeParsing },
-          { headerTitle: 'JD PARSING', heading: 'Job Description Parsing', bodyText: 'Decode complex JDs into structured requirements — automatically identifying must-have skills, experience levels, and role expectations.', image: ASSETS.JDParsing },
+          { headerTitle: 'AI RECRUITMENT', heading: 'Generative JD', bodyText: 'Describe the role in plain language and get a complete, structured job description ready to post — tailored to your industry and seniority level.', image: ASSETS.JDGen },
+          { headerTitle: 'PROFILE SEARCH', heading: 'AI Profile Search', bodyText: 'Forget Boolean strings. Just type what you’re looking for in plain English and let the AI surface the most relevant candidates from your entire talent pool.', image: ASSETS.Container },
+          { headerTitle: 'SUMMARIZATION', heading: 'AI Job Post Summary', bodyText: 'Get an end-to-end pulse on every job post. Our AI summarizes the entire lifecycle — from profiles sent and pending processing to final selections, rejections, and required replacements.', image: ASSETS.SummeryPopup },
+          { headerTitle: 'RESUME PARSING', heading: 'Resume Parsing', bodyText: 'Whether it’s a Word doc, PDF — GA HireSync reads it all and turns it into clean, structured candidate data automatically.', image: ASSETS.ResumeParsing },
+          { headerTitle: 'JD PARSING', heading: 'Job Description Parsing', bodyText: 'Feed in any job description and instantly get a breakdown of required skills, experience benchmarks, and role expectations — no manual tagging needed.', image: ASSETS.JDParsing },
         ],
         faqs: [
-          { question: "How does the AI Job Description Generator work?", answer: "Our model is trained on thousands of successful job postings and understands industry-specific language, required skills, and optimal formatting to produce compelling JDs instantly." },
-          { question: "What file formats does Resume Parsing support?", answer: "We support PDF, DOCX, TXT, and even LinkedIn profile URLs for resume parsing with high accuracy." },
+          { question: "How does the Generative JD work?", answer: "Give the AI a brief — role title, responsibilities, and seniority level. It generates a fully structured, post-ready job description in seconds. You review, tweak, and publish." },
+          { question: "What resume formats does parsing support?", answer: "PDF, Word (.doc and .docx), plain text, and LinkedIn exports. The parser handles inconsistent layouts and multilingual resumes without any manual intervention." },
+          { question: "Does AI Profile Search work outside our database?", answer: "It searches within your GA HireSync talent pool. For external sourcing, LinkedIn and other integrated channels bring new candidates directly into your pipeline." },
+          { question: "Can the AI Job Post Summary screen inbound applicants?", answer: "Yes. Run any inbound resume through the summary tool to get an instant read on fit — strengths, gaps, and relevant experience — before deciding whether to move forward." },
+          { question: "Does the AI improve over time?", answer: "Yes. The platform improves continuously with usage. Enterprise plans support fine-tuning on your own historical hiring data for even sharper relevance." },
         ]
       },
       {
         slug: "candidate-intelligence",
         title: "Candidate Intelligence",
-        description: "Turn unstructured resumes into a competitive advantage with automated parsing, deep profiling, and instant comparison tools.",
+        description: "Your talent pool is one of your most valuable assets. GA HireSync makes sure every candidate in it is fully profiled, searchable, and ready to match the moment the right role opens up.",
         icon: "solar:user-id-bold-duotone",
         featureCards: [
-          { headerTitle: 'RESUME BANK', heading: 'Resume Bank', bodyText: 'Centralize resumes from all sources into a single, searchable database with automated deduplication and AI-powered indexing.', image: ASSETS.ResumeBank },
-          { headerTitle: 'CANDIDATE PROFILE', heading: 'Candidate Profile', bodyText: 'Maintain rich, structured candidate profiles with full interaction history, previous applications, and AI-extracted skill insights.', image: ASSETS.CandProfile },
-          { headerTitle: 'COMPARISON', heading: 'Resume Comparison', bodyText: 'Side-by-side AI comparison of multiple candidates — instantly surface the best match against your job requirements.', image: ASSETS.ResumeComparison },
+          { headerTitle: 'RESUME BANK', heading: 'Resume Bank', bodyText: 'One searchable home for every resume you’ve ever received — automatically deduplicated, AI-indexed, and ready to search the moment a new role comes in.', image: ASSETS.ResumeBank },
+          { headerTitle: 'CANDIDATE PROFILE', heading: 'Candidate Profile', bodyText: 'Every touchpoint, application, and AI insight lives on a single candidate card — so any recruiter on your team can pick up right where you left off.', image: ASSETS.CandProfile },
+          { headerTitle: 'COMPARISON', heading: 'Resume Comparison', bodyText: 'Put your top candidates side by side and let AI score them against your job requirements — so the final shortlist is based on fit, not familiarity.', image: ASSETS.ResumeComparison },
         ],
         faqs: [
-          { question: "How does Resume Comparison work?", answer: "Our AI scores candidates across the same rubric based on the job description — skills match, experience relevance, education, and more — letting you rank them instantly." },
-          { question: "Can I search the Resume Bank with natural language?", answer: "Yes, you can search using queries like 'senior backend engineer with Node.js in Bangalore' and get ranked results in seconds." },
+          { question: "How does Resume Comparison score candidates?", answer: "The AI evaluates each candidate against your active job description — scoring on skills, experience, seniority, and education — then presents a side-by-side breakdown so shortlisting decisions are fast and defensible." },
+          { question: "Can I search the Resume Bank in plain English?", answer: "Yes. Describe the candidate you're looking for and GA HireSync surfaces the best matches — even when their resumes don't use your exact keywords." },
+          { question: "How is the match score calculated?", answer: "Skills, experience, industry background, and certifications are compared against the parsed job requirements. Each dimension is weighted, and the score comes with a clear breakdown so you know exactly what's driving it." },
+          { question: "What happens when a candidate applies more than once?", answer: "Duplicates are detected and merged into a single profile automatically — preserving all application history so your database stays clean without manual effort." },
+          { question: "Can recruiters add notes to a candidate profile?", answer: "Yes. Notes, tags, and status labels can be added by any recruiter. They're timestamped, attributed, and visible to the whole team — so context is never lost during handoffs." },
         ]
       },
       {
         slug: "recruiter-insights",
         title: "Recruiter Insights",
-        description: "Data-driven visibility into your entire hiring operation — track performance, analyse funnels, and make smarter decisions.",
+        description: "You can’t improve what you can’t measure. GA HireSync gives hiring leads full visibility into team performance, pipeline health, and where candidates are falling off — all in one place.",
         icon: "solar:chart-square-bold-duotone",
         featureCards: [
-          { headerTitle: 'ANALYTICS', heading: 'Hiring Analytics', bodyText: 'Comprehensive dashboards that track time-to-hire, source quality, and pipeline performance across all your open roles.', image: ASSETS.HiringAnalytics },
-          { headerTitle: 'PERFORMANCE', heading: 'Recruiter Performance', bodyText: 'Monitor individual recruiter productivity, placement rates, and activity metrics to keep your team performing at their best.', image: ASSETS.RecruiterPerformance },
-          { headerTitle: 'FUNNEL', heading: 'Funnel Analysis', bodyText: 'Visualize candidate drop-off at every stage of your hiring funnel and identify bottlenecks with AI-powered recommendations.', image: ASSETS.FunnelAnalysis },
+          { headerTitle: 'ANALYTICS', heading: 'Hiring Analytics', bodyText: 'From time-to-fill to offer acceptance rates, get the full picture of how your recruitment engine is performing — broken down by role, team, or time period.', image: ASSETS.HiringAnalytics },
+          { headerTitle: 'PERFORMANCE', heading: 'Recruiter Performance', bodyText: 'See exactly how each recruiter is performing — calls made, profiles submitted, placements closed — and coach your team with real data behind you. A live ranking of recruiters by successful hires, candidate engagement, and interview conversions — celebrating top performers and keeping the whole team motivated.', image: ASSETS.RecruiterPerformance },
+          { headerTitle: 'FUNNEL', heading: 'Funnel Analysis', bodyText: 'Spot where candidates are dropping out of your pipeline before you lose them. AI flags the weak points and suggests where to act first.', image: ASSETS.FunnelAnalysis },
         ],
         faqs: [
-          { question: "Can I export analytics reports?", answer: "All reports can be exported to CSV, PDF, or directly to your BI tools via API." },
-          { question: "How far back does the historical data go?", answer: "We retain the full hiring history for as long as your account is active, with no data caps." },
+          { question: "Can I export analytics reports?", answer: "Yes. Every dashboard exports as PDF or CSV in one click. Reports can also be scheduled for automatic delivery — weekly or monthly — to your inbox." },
+          { question: "How far back does the data go?", answer: "GA HireSync retains analytics for the full lifetime of your account. Query any date range — last month, year-on-year, custom windows — whenever you need it." },
+          { question: "Can I set targets for individual recruiters?", answer: "Yes. Define custom KPIs per recruiter or team — placement targets, time-to-hire thresholds, engagement rates — and track live progress against each one." },
+          { question: "Can Funnel Analysis be filtered by role or recruiter?", answer: "Yes. Filter by job role, recruiter, team, client, or sourcing channel to pinpoint whether a bottleneck is isolated to one position or systemic across the team." },
+          { question: "How should we roll out the Leaderboard to the team?", answer: "Frame it as a celebration of output, not a ranking of worth. GA HireSync gives managers full control over visibility — team-wide, manager-only, or internal coaching tool." },
         ]
       },
       {
         slug: "job-post-negotiations",
         title: "Job Post Negotiations",
-        description: "Close more candidates faster with structured negotiation workflows for both terms and compensation.",
+        description: "The final stretch of any hire shouldn’t stall over back-and-forth emails. GA HireSync gives you structured, trackable workflows to move from verbal offer to signed contract without the chaos.",
         icon: "solar:hand-shake-bold-duotone",
         featureCards: [
-          { headerTitle: 'NEGOTIATIONS', heading: 'T&C Negotiations', bodyText: 'Streamline terms and conditions negotiation with structured workflows, version tracking, and real-time collaboration between all stakeholders.', image: ASSETS.TCNegotiations },
-          { headerTitle: 'OFFER MANAGEMENT', heading: 'Job Post Negotiations', bodyText: 'Manage the full offer lifecycle from initial package creation to final sign-off, with approval flows and counter-offer tracking.', image: ASSETS.JobPostNegotiations },
+          { headerTitle: 'NEGOTIATIONS', heading: 'Agency–Organization Terms & Conditions', bodyText: 'Agencies and organizations define and agree on employment terms — salary, benefits, joining date, and work conditions — in one structured, version-tracked thread.', image: ASSETS.TCNegotiations },
+          { headerTitle: 'OFFER MANAGEMENT', heading: 'Job Post Changes & Client Negotiations', bodyText: 'Agency managers and clients can collaboratively revise job post details before going live. Every change — title, scope, salary, location — is recorded for full transparency.', image: ASSETS.JobPostNegotiations },
         ],
         faqs: [
-          { question: "Can candidates respond to offers digitally?", answer: "Yes, candidates receive a branded offer portal where they can review, accept, or counter an offer entirely online." },
-          { question: "Does offer management integrate with payroll?", answer: "We offer API integrations with major payroll and HRIS systems like Workday, BambooHR, and others." },
+          { question: "Can candidates respond to offers digitally?", answer: "Yes. Candidates receive a secure link to view and respond to their offer — accept, decline, or counter — directly in GA HireSync. All responses are logged and stakeholders notified instantly." },
+          { question: "Does offer management integrate with payroll?", answer: "Finalized offer data exports in structured formats compatible with common HRIS and payroll platforms. Native payroll integrations are on the product roadmap." },
+          { question: "How does version control work during T&C negotiations?", answer: "Every change is versioned and timestamped automatically. The full revision history is always accessible — who changed what, and when — giving all parties a reliable audit trail." },
+          { question: "Can we set up a multi-stage approval flow for offers?", answer: "Yes. Define a custom approval chain — recruiter, hiring manager, finance — with each stage requiring explicit sign-off before the offer proceeds or reaches the candidate." },
+          { question: "What happens when a candidate submits a counter-offer?", answer: "The counter is captured in GA HireSync and routed to approvers immediately. Original and counter terms are shown side by side so decisions are fast and every response is logged." },
         ]
       },
     ]

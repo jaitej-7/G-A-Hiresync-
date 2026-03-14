@@ -92,14 +92,13 @@ const TrustedBy: React.FC = () => {
                     <StickyHeading
                         badgeText="Trusted By"
                         title={[
-                            "Powering high-growth",
-                            "teams worldwide"
+                            "Trusted by Teams",
+                            "that move fast"
                         ]}
-                        gradientWord="high-growth"
+                        gradientWord="Teams"
                         subtitle={
                             <>
-                                Join industry leaders who trust GA HireSync to build their teams. <br />
-                                Experience the future of recruitment today.
+                               From boutique staffing firms to enterprise HR departments, hiring leaders across industries rely on GA HireSync to fill roles faster, reduce drop-offs, and keep every stakeholder in the loop.
                             </>
                         }
                     />

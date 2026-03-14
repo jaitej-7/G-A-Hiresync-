@@ -55,7 +55,13 @@ const Navbar: React.FC = () => {
                         className="relative group px-1"
                         onMouseEnter={() => handleMouseEnter('features')}
                     >
-                        <button className={`hover:text-neutral-900 transition-colors flex items-center gap-1.5 px-3 py-2 rounded-full ${activeMenu === 'features' ? 'bg-neutral-100 text-neutral-900' : ''}`}>
+                        <button 
+                            className={`hover:text-neutral-900 transition-colors flex items-center gap-1.5 px-3 py-2 rounded-full ${activeMenu === 'features' ? 'bg-neutral-100 text-neutral-900' : ''}`}
+                            aria-haspopup="true"
+                            aria-expanded={activeMenu === 'features'}
+                            aria-controls="mega-menu"
+                            aria-label="Features menu"
+                        >
                             Features
                             <Icon icon="solar:alt-arrow-down-linear" className={`transition-transform duration-200 ${activeMenu === 'features' ? 'rotate-180 text-brand-purple' : ''}`} />
                         </button>
@@ -65,27 +71,54 @@ const Navbar: React.FC = () => {
                         className="relative group px-1"
                         onMouseEnter={() => handleMouseEnter('useCases')}
                     >
-                        <button className={`hover:text-neutral-900 transition-colors flex items-center gap-1.5 px-3 py-2 rounded-full ${activeMenu === 'useCases' ? 'bg-neutral-100 text-neutral-900' : ''}`}>
+                        <button 
+                            className={`hover:text-neutral-900 transition-colors flex items-center gap-1.5 px-3 py-2 rounded-full ${activeMenu === 'useCases' ? 'bg-neutral-100 text-neutral-900' : ''}`}
+                            aria-haspopup="true"
+                            aria-expanded={activeMenu === 'useCases'}
+                            aria-controls="mega-menu"
+                            aria-label="Use cases menu"
+                        >
                             Use Cases
                             <Icon icon="solar:alt-arrow-down-linear" className={`transition-transform duration-200 ${activeMenu === 'useCases' ? 'rotate-180 text-brand-purple' : ''}`} />
                         </button>
                     </div>
 
-                    <Link to="/pricing" className="hover:text-neutral-900 transition-colors px-3 py-2 rounded-full" onMouseEnter={() => handleMouseEnter(null)}>Pricing</Link>
-                    <Link to="/about" className={`hover:text-neutral-900 transition-colors px-3 py-2 rounded-full ${isAboutPage ? 'text-blue-600 font-bold bg-blue-50/50' : ''}`} onMouseEnter={() => handleMouseEnter(null)}>About us</Link>
-                    <Link to="/contact-us" className={`hover:text-neutral-900 transition-colors px-3 py-2 rounded-full ${isContactPage ? 'text-blue-600 font-bold bg-blue-50/50' : ''}`} onMouseEnter={() => handleMouseEnter(null)}>Contact</Link>
+                    <Link 
+                        to="/pricing" 
+                        className={`hover:text-neutral-900 px-4 py-2 rounded-full transition-all duration-200 ${location.pathname === '/pricing' ? 'text-neutral-900 bg-neutral-100' : 'hover:bg-neutral-50/50'}`}
+                        onMouseEnter={() => handleMouseEnter(null)}
+                    >
+                        Pricing
+                    </Link>
+                    <Link 
+                        to="/about" 
+                        className={`hover:text-neutral-900 px-4 py-2 rounded-full transition-all duration-200 ${isAboutPage ? 'text-blue-600 font-semibold bg-blue-50/50 outline outline-1 outline-blue-100/50' : 'hover:bg-neutral-50/50'}`} 
+                        onMouseEnter={() => handleMouseEnter(null)}
+                    >
+                        About us
+                    </Link>
+                    <Link 
+                        to="/contact-us" 
+                        className={`hover:text-neutral-900 px-4 py-2 rounded-full transition-all duration-200 ${isContactPage ? 'text-blue-600 font-semibold bg-blue-50/50 outline outline-1 outline-blue-100/50' : 'hover:bg-neutral-50/50'}`} 
+                        onMouseEnter={() => handleMouseEnter(null)}
+                    >
+                        Contact
+                    </Link>
                 </div>
 
                 {/* Desktop Actions & Mobile Hamburger */}
                 <div className="flex items-center gap-4 md:gap-6">
-                    <button className="hidden sm:block bg-neutral-900 text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-neutral-800 transition-all shadow-lg shadow-neutral-900/10 active:scale-95">
-                        Login
+                    <button className="hidden sm:flex items-center gap-2 bg-neutral-900 text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/20 active:scale-95 group">
+                        Login 
+                        <Icon icon="solar:login-2-linear" className="text-lg group-hover:translate-x-0.5 transition-transform" />
                     </button>
 
                     {/* Mobile Menu Toggle */}
                     <button
-                        className="md:hidden p-2 -mr-2 text-neutral-600 hover:text-neutral-900 transition-colors outline-none"
+                        className="md:hidden p-2.5 -mr-2 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-full transition-all outline-none"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={isMobileMenuOpen}
                     >
                         <Icon icon={isMobileMenuOpen ? "solar:close-circle-linear" : "solar:hamburger-menu-linear"} className="text-2xl" />
                     </button>
@@ -94,14 +127,18 @@ const Navbar: React.FC = () => {
                 {/* Mega Menu Overlay inside Navbar Context */}
                 {activeMenu && (
                     <div 
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[1100px] z-[60]"
+                        id="mega-menu"
+                        className="absolute left-1/2 -translate-x-1/2 top-full w-[1100px] z-[60]"
                         onMouseEnter={() => { if (hoverTimeout.current) clearTimeout(hoverTimeout.current); }}
+                        onMouseLeave={handleMouseLeave}
                     >
+                        {/* Invisible bridge to prevent hover loss between nav and menu */}
+                        <div className="h-6 w-full -mt-2" />
                         <MegaMenu 
                             isOpen={activeMenu !== null} 
                             activeMenu={activeMenu}
-                            onMouseEnter={() => {}}
-                            onMouseLeave={() => {}}
+                            onMouseEnter={() => { if (hoverTimeout.current) clearTimeout(hoverTimeout.current); }}
+                            onMouseLeave={handleMouseLeave}
                         />
                     </div>
                 )}
@@ -114,18 +151,51 @@ const Navbar: React.FC = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden overflow-hidden border-t border-neutral-200/50 bg-white/50 rounded-b-[24px]"
+                        className="md:hidden overflow-hidden border-t border-neutral-200/50 bg-white/50 rounded-b-[32px]"
                     >
-                        <div className="px-6 py-6 flex flex-col gap-4 text-sm font-medium text-neutral-600">
-                            <Link to="/#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 flex justify-between">Features <Icon icon="solar:alt-arrow-right-linear" /></Link>
-                            <Link to="/#use-cases" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 flex justify-between">Use Cases <Icon icon="solar:alt-arrow-right-linear" /></Link>
-                            <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100">Pricing</Link>
-                            <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 ${isAboutPage ? 'text-blue-600 font-bold' : ''}`}>About us</Link>
-                            <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-2 border-b border-neutral-100 ${isContactPage ? 'text-blue-600 font-bold' : ''}`}>Contact us</Link>
+                        <div className="px-6 py-8 flex flex-col gap-6 text-sm font-medium text-neutral-600">
+                            <div className="space-y-4">
+                                <Link to="/#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-3 border-b border-neutral-100/50 flex items-center justify-between group">
+                                    <span className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center">
+                                            <Icon icon="solar:magic-stick-3-linear" className="text-lg" />
+                                        </div>
+                                        Features
+                                    </span>
+                                    <Icon icon="solar:alt-arrow-right-linear" className="group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                                <Link to="/#use-cases" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-neutral-900 transition-colors py-3 border-b border-neutral-100/50 flex items-center justify-between group">
+                                    <span className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center">
+                                            <Icon icon="solar:buildings-linear" className="text-lg" />
+                                        </div>
+                                        Use Cases
+                                    </span>
+                                    <Icon icon="solar:alt-arrow-right-linear" className="group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                                <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-3 border-b border-neutral-100/50 flex items-center gap-3 ${location.pathname === '/pricing' ? 'text-blue-600' : ''}`}>
+                                    <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center">
+                                        <Icon icon="solar:bill-list-linear" className="text-lg" />
+                                    </div>
+                                    Pricing
+                                </Link>
+                                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-3 border-b border-neutral-100/50 flex items-center gap-3 ${isAboutPage ? 'text-blue-600' : ''}`}>
+                                    <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center">
+                                        <Icon icon="solar:users-group-two-rounded-linear" className="text-lg" />
+                                    </div>
+                                    About us
+                                </Link>
+                                <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-neutral-900 transition-colors py-3 border-b border-neutral-100/50 flex items-center gap-3 ${isContactPage ? 'text-blue-600' : ''}`}>
+                                    <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center">
+                                        <Icon icon="solar:letter-linear" className="text-lg" />
+                                    </div>
+                                    Contact us
+                                </Link>
+                            </div>
 
-                            <div className="flex flex-col gap-3 mt-2">
-                                <button className="bg-neutral-900 text-white font-medium px-6 py-3 rounded-full hover:bg-neutral-800 transition-all text-center sm:hidden shadow-lg shadow-neutral-900/10">
-                                    Login
+                            <div className="flex flex-col gap-3 mt-4">
+                                <button className="bg-neutral-900 text-white font-semibold px-6 py-4 rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2 shadow-xl shadow-neutral-900/10">
+                                    Login <Icon icon="solar:login-2-linear" className="text-xl" />
                                 </button>
                             </div>
                         </div>

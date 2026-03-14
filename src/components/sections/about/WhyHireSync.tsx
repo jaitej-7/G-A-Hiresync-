@@ -33,15 +33,13 @@ const WhyHireSync: React.FC = () => {
                     <StickyHeading
                         badgeText="Why G A Hiresync"
                         title={[
-                            "Recruitment Process Automation through an",
-                            "AI-Powered Platform"
+                            "One Platform.",
+                            "Every Step of the Hire."
                         ]}
-                        gradientWord="AI-Powered"
+                        gradientWord="One Platform."
                         subtitle={
                             <>
-                                Streamline your hiring process with our AI-driven platform. <br />
-                                Find the perfect candidate, faster and more efficiently. <br />
-                                Get started today!
+                                G A HireSync was born out of frustration with disconnected tools, messy spreadsheets, and slow hiring cycles. We built a single platform that handles everything — from sourcing to signed offer — so your team can focus on what actually matters: placing the right people.
                             </>
                         }
                     />
@@ -60,9 +58,9 @@ const WhyHireSync: React.FC = () => {
                         <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-500 mb-6 mt-1 group-hover:scale-110 transition-transform">
                             <Icon icon="solar:magic-stick-3-bold" className="text-xl" />
                         </div>
-                        <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">AI-Powered Hiring</h3>
+                        <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">AI That Does the Heavy Lifting</h3>
                         <p className="text-sm text-neutral-500 leading-relaxed max-w-lg">
-                            Let our AI screen resumes, rank candidates based on job descriptions, and draft personalized outreach emails in seconds.
+                            From screening hundreds of resumes to writing the perfect job description, our AI handles the repetitive work so your recruiters can focus on relationships.
                         </p>
                     </motion.div>
 
@@ -77,9 +75,9 @@ const WhyHireSync: React.FC = () => {
                         <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-500 mb-6 mt-1 group-hover:scale-110 transition-transform">
                             <Icon icon="solar:file-text-bold" className="text-xl" />
                         </div>
-                        <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">Resume Intelligence</h3>
+                        <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">Every Resume, Fully Understood</h3>
                         <p className="text-sm text-neutral-500 leading-relaxed">
-                            Automatically extract skills, experience, and contact info from any format.
+                            No more skimming. GA HireSync automatically pulls out the skills, experience, and signals that matter — from any file format, in seconds.
                         </p>
                     </motion.div>
 
@@ -94,9 +92,9 @@ const WhyHireSync: React.FC = () => {
                         <div className="w-12 h-12 bg-cyan-100 rounded-2xl flex items-center justify-center text-cyan-500 mb-6 mt-1 group-hover:scale-110 transition-transform">
                             <Icon icon="solar:users-group-rounded-bold" className="text-xl" />
                         </div>
-                        <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">Collaborative Workflow</h3>
+                        <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">Keep Everyone on the Same Page</h3>
                         <p className="text-sm text-neutral-500 leading-relaxed">
-                            Share candidate profiles with clients or hiring managers via secure, trackable links.
+                            Share live candidate profiles with hiring managers and clients. No more stale PDFs or missed feedback — just seamless, real-time collaboration.
                         </p>
                     </motion.div>
 
@@ -112,9 +110,9 @@ const WhyHireSync: React.FC = () => {
                             <div className="w-12 h-12 bg-neutral-200/60 rounded-2xl flex items-center justify-center text-neutral-600 mb-6 mt-1 group-hover:scale-110 transition-transform">
                                 <Icon icon="solar:chart-2-bold" className="text-xl" />
                             </div>
-                            <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">Advanced Analytics</h3>
+                            <h3 className="text-xl font-medium text-neutral-900 mb-2 tracking-tight">Know What’s Working and What’s Not</h3>
                             <p className="text-sm text-neutral-500 leading-relaxed">
-                                Track time-to-hire, source quality, and team performance with beautiful, exportable dashboards built for agencies.
+                                Drill into source quality, pipeline velocity, and individual recruiter output. Make decisions backed by data, not gut feel.
                             </p>
                         </div>
 
