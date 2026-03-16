@@ -98,16 +98,6 @@ const ContactForm: React.FC = () => {
                                     <label className="text-sm font-medium text-neutral-700">Phone Number</label>
                                     <input type="tel" placeholder="+1 (555) 000-0000" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" />
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-neutral-700">Organization Type</label>
-                                    <select className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none text-neutral-600">
-                                        <option value="">Select type...</option>
-                                        <option value="consultancy">Consultancy</option>
-                                        <option value="enterprise">Enterprise</option>
-                                        <option value="startup">Startup</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
                             </div>
 
                             <div className="space-y-2">

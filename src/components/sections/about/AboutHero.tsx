@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
+
 const AboutHero: React.FC = () => {
     return (
         <section className="relative py-24 md:py-32 overflow-hidden min-h-[60vh] flex flex-col justify-center">
@@ -49,14 +51,16 @@ const AboutHero: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.8 }}
                     className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
                 >
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-8 py-3.5 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
-                    >
-                        Book a Demo
-                    </motion.button>
+                    <Link to="/contact-us">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-8 py-3.5 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
+                        >
+                            Book a Demo
+                        </motion.button>
+                    </Link>
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
