@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { menuData } from '../data/menuData';
@@ -100,14 +100,16 @@ const DynamicPage: React.FC<{ type: 'features' | 'useCases' }> = ({ type }) => {
                 transition={{ duration: 0.5, delay: 0.8 }}
                 className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
             >
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-8 py-3.5 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
-                >
-                    Get Started Free
-                </motion.button>
+                <Link to="/contact-us">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-8 py-3.5 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
+                    >
+                        Get Started Free
+                    </motion.button>
+                </Link>
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

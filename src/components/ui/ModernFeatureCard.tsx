@@ -60,6 +60,7 @@ export const ModernFeatureCard: React.FC<ModernFeatureCardProps> = ({
                             src={image}
                             alt={heading}
                             className="w-full object-cover opacity-95 group-hover:opacity-100 transition-opacity"
+                            loading="lazy"
                         />
                     </motion.div>
 

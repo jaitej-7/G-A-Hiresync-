@@ -19,9 +19,11 @@ const Footer: React.FC = () => {
                 </p>
 
                 <div className="pb-[60px]">
-                    <button className="flex items-center gap-2 rounded-full bg-white px-10 py-4 text-sm font-bold text-[#071C50] uppercase tracking-widest transition-all hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-xl shadow-white/5">
-                        Get Started <Icon icon="solar:alt-arrow-right-linear" className="text-lg" />
-                    </button>
+                    <Link to="/contact-us">
+                        <button className="flex items-center gap-2 rounded-full bg-white px-10 py-4 text-sm font-bold text-[#071C50] uppercase tracking-widest transition-all hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-xl shadow-white/5">
+                            Get Started <Icon icon="solar:alt-arrow-right-linear" className="text-lg" />
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="w-[84%] border-b-2 border-white/20" />
@@ -63,10 +65,11 @@ const Footer: React.FC = () => {
                     {/* Column 3 - Resource */}
                     <div className="flex flex-col">
                         <span className="text-base font-medium">Resource</span>
-                        <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80 cursor-pointer">
+                        <div className="mt-[25px] flex flex-col gap-[20px] text-sm font-light text-white/80">
                             <Link to="/faqs" className="hover:text-white transition-colors">FAQs</Link>
-                            <span>Use Cases</span>
-                            <span>Job Board</span>
+                            <Link to="/coming-soon" className="hover:text-white transition-colors">Use Cases</Link>
+                            <Link to="/coming-soon" className="hover:text-white transition-colors">Job Board</Link>
+                            <Link to="/coming-soon" className="hover:text-white transition-colors">Coming Soon</Link>
                         </div>
                     </div>
 
@@ -104,4 +107,4 @@ const Footer: React.FC = () => {
     );
 };
 
-export default Footer;
+export default React.memo(Footer);

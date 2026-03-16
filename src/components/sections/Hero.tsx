@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import HeroVisual from '../../assets/hero/Hero.svg';
 
 const FloatingCursor = ({ label, color, delay = 0, initialPos = { x: 0, y: 0 }, direction = 'left' }: { label: string, color: string, delay?: number, initialPos?: { x: number, y: number }, direction?: 'left' | 'right' }) => (
@@ -86,14 +87,16 @@ const Hero: React.FC = () => {
                     <FloatingCursor label="Candidate" color="#10b981" delay={8} initialPos={{ x: 200, y: 150 }} />
                     <FloatingCursor label="Interviewer" color="#f43f5e" delay={3} initialPos={{ x: -250, y: 90 }} direction="right" />
 
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
-                    >
-                        Book a Demo
-                    </motion.button>
+                    <Link to="/contact-us">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            className="w-full sm:w-auto bg-neutral-900 text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/10"
+                        >
+                            Book a Demo
+                        </motion.button>
+                    </Link>
                 </motion.div>
             </div>
 
@@ -110,6 +113,7 @@ const Hero: React.FC = () => {
                         src={HeroVisual}
                         alt="HireSync Dashboard Platform"
                         className="w-full h-auto object-contain"
+                        loading="lazy"
                     />
                 </div>
             </motion.div>

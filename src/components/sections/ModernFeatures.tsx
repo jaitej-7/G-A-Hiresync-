@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
 import { ModernFeatureCard } from '../ui/ModernFeatureCard';
 import { StickyHeading } from '../ui/StickyHeading';
+import { Link } from 'react-router-dom';
 
 // Importing SVG Assets
 import JDGenImg from '../../assets/Features/AI recuriter tool/Ai JOb descrptiodescription Generator.svg';
@@ -98,10 +99,12 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({ badge, title, descripti
                             {description}
                         </p>
 
-                        <button className="group relative px-8 py-4 rounded-xl bg-[#171717] text-white font-bold text-xs uppercase tracking-widest transition-all hover:bg-neutral-800 hover:shadow-2xl active:scale-95 space-x-2">
-                            <span>Get Started</span>
-                            <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
-                        </button>
+                        <Link to="/contact-us">
+                            <button className="group relative px-8 py-4 rounded-xl bg-[#171717] text-white font-bold text-xs uppercase tracking-widest transition-all hover:bg-neutral-800 hover:shadow-2xl active:scale-95 space-x-2">
+                                <span>Get Started</span>
+                                <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
+                            </button>
+                        </Link>
                     </motion.div>
                 </div>
 

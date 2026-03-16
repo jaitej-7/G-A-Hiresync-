@@ -15,13 +15,22 @@ const AboutHero: React.FC = () => {
                     HireSync AI 2.0 is now live
                 </motion.div>
 
-                <h1 className="text-[30px] sm:text-4xl md:text-6xl lg:text-[64px] font-medium tracking-tight text-[#171717] mb-6 leading-[1.1] flex flex-wrap justify-center items-center gap-x-2 gap-y-2 sm:gap-x-3 max-w-4xl mx-auto">
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>Redefining</motion.span>
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>hiring</motion.span>
-                    <div className="basis-full h-0" />
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>with</motion.span>
-                    <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#56A8FD] to-[#A16AFE] animate-gradient-text">Intelligence.</span>
+                <h1 className="text-[30px] sm:text-4xl md:text-6xl lg:text-[64px] font-medium tracking-tight text-[#171717] mb-6 leading-[1.1] max-w-5xl mx-auto flex flex-col items-center">
+                    <motion.span 
+                        initial={{ opacity: 0, y: 30 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="block"
+                    >
+                        we Build the Platform
+                    </motion.span>
+                    <motion.span 
+                        initial={{ opacity: 0, y: 30 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="block whitespace-normal sm:whitespace-nowrap"
+                    >
+                        Recruitment Always <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#56A8FD] to-[#A16AFE] animate-gradient-text">Needed.</span>
                     </motion.span>
                 </h1>
 
@@ -29,10 +38,9 @@ const AboutHero: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
-                    className="text-lg md:text-xl text-neutral-500 mb-10 max-w-2xl font-normal leading-relaxed"
+                    className="text-lg md:text-xl text-neutral-500 mb-10 max-w-3xl font-normal leading-relaxed"
                 >
-                    HireSync is committed to reshaping recruitment through <span className="text-neutral-900 font-medium">intelligent technology</span>.
-                    Our platform is engineered to deliver precision, speed, and ease to the hiring process.
+                    GA HireSync streamlines recruitment by combining intelligent automation with deep industry expertise. We replace fragmented tools and scattered data with a seamless process built for precision and speed.
                 </motion.p>
 
                 <motion.div

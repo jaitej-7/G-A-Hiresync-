@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 const PricingPage: React.FC = () => {
     const [isYearly, setIsYearly] = useState(true);
@@ -123,9 +124,11 @@ const PricingPage: React.FC = () => {
                                 ))}
                             </div>
 
-                            <button className={`w-full py-4 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all active:scale-95 ${plan.highlight ? 'bg-white text-black hover:bg-neutral-100' : 'bg-black text-white hover:bg-neutral-800'}`}>
-                                {plan.cta}
-                            </button>
+                            <Link to="/contact-us">
+                                <button className={`w-full py-4 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all active:scale-95 ${plan.highlight ? 'bg-white text-black hover:bg-neutral-100' : 'bg-black text-white hover:bg-neutral-800'}`}>
+                                    {plan.cta}
+                                </button>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

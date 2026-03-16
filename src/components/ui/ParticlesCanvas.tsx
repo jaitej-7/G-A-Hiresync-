@@ -40,7 +40,7 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      const baseRadius = Math.min(window.innerWidth, window.innerHeight) * 0.35;
+      const baseRadius = Math.min(window.innerWidth, window.innerHeight) * 0.7;
       particlesRef.current.forEach(p => p.radius = baseRadius);
     };
 
@@ -55,14 +55,14 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
     });
 
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 500 : 1000;
-    const baseRadius = Math.min(window.innerWidth, window.innerHeight) * 0.35;
+    const particleCount = isMobile ? 800 : 1500;
+    const baseRadius = Math.min(window.innerWidth, window.innerHeight) * 0.42;
 
     particlesRef.current = Array.from({ length: particleCount }, () => ({
       theta: Math.random() * Math.PI * 2,
       phi: Math.acos((Math.random() * 2) - 1),
       radius: baseRadius,
-      size: Math.random() * 1.4 + 0.4,
+      size: Math.random() * 1.8 + 0.6,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
       offsetX: 0,
       offsetY: 0,
@@ -75,7 +75,7 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
     resize();
 
     const animate = () => {
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d', { alpha: true });
       if (!ctx) return;
 
       requestRef.current = requestAnimationFrame(animate);
@@ -85,24 +85,34 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
       rotRef.current.x += 0.001;
 
       const { x: rotX, y: rotY } = rotRef.current;
-      const width = canvas.width;
-      const height = canvas.height;
-      const fov = 600, cameraZ = 600;
+      const { width, height } = canvas;
+      const fov = 600;
+      const cameraZ = 600;
+      const mouseX = mouseRef.current.x;
+      const mouseY = mouseRef.current.y;
+      const mouseRadius = 120;
 
-      // Update and Depth Sort
-      const points = particlesRef.current.map(p => {
+      const particles = particlesRef.current;
+      const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+      const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+      // Pre-calculate projection and physics for all particles
+      // Using a temporary flat array for sorting to avoid excessive object creation
+      const drawList = [];
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
         // Base rotated position
         const tx = p.radius * Math.sin(p.phi) * Math.cos(p.theta);
         const ty = p.radius * Math.sin(p.phi) * Math.sin(p.theta);
         const tz = p.radius * Math.cos(p.phi);
 
         // Y rotation
-        const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
         const rx = tx * cosY - tz * sinY;
         const rz = tx * sinY + tz * cosY;
 
         // X rotation
-        const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
         const ry = ty * cosX - rz * sinX;
         const rz2 = ty * sinX + rz * cosX;
 
@@ -116,15 +126,14 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
         const sx = width / 2 + wx * perspective;
         const sy = height / 2 + wy * perspective;
 
-        // Mouse repulsion - optimized distance check
-        const dx = sx - mouseRef.current.x;
-        const dy = sy - mouseRef.current.y;
-        const mouseRadius = 120;
+        // Mouse repulsion
+        const dx = sx - mouseX;
+        const dy = sy - mouseY;
         
-        // Fast pre-check before square root
         if (Math.abs(dx) < mouseRadius && Math.abs(dy) < mouseRadius) {
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouseRadius) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < mouseRadius * mouseRadius) {
+            const dist = Math.sqrt(distSq);
             const force = (mouseRadius - dist) / mouseRadius;
             const angle = Math.atan2(dy, dx);
             p.vx += Math.cos(angle) * force * 5;
@@ -133,45 +142,48 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
           }
         }
 
-        // Spring back
+        // Physics
         p.vx += (0 - p.offsetX) * 0.05;
         p.vy += (0 - p.offsetY) * 0.05;
         p.vz += (0 - p.offsetZ) * 0.05;
-
-        // Friction (Reduced slightly for smoother settling)
         p.vx *= 0.85;
         p.vy *= 0.85;
         p.vz *= 0.85;
-
         p.offsetX += p.vx;
         p.offsetY += p.vy;
         p.offsetZ += p.vz;
 
-        // For drawing and sorting
-        const zPos = wz + cameraZ;
         const alpha = Math.max(0.05, Math.min(0.6, (1 - (rz2 / p.radius) * 0.5) * 0.5));
-
-        return {
-          sx: width / 2 + (rx + p.offsetX) * (fov / (rz2 + p.offsetZ + cameraZ)),
-          sy: height / 2 + (ry + p.offsetY) * (fov / (rz2 + p.offsetZ + cameraZ)),
-          zDepth: zPos,
+        
+        drawList.push({
+          sx,
+          sy,
+          z: wz + cameraZ,
           alpha,
           color: p.color,
-          size: p.size * (fov / zPos)
-        };
-      });
+          size: Math.max(0.2, p.size * perspective)
+        });
+      }
 
-      points.sort((a, b) => b.zDepth - a.zDepth);
+      // Depth sort
+      drawList.sort((a, b) => b.z - a.z);
 
-      points.forEach(p => {
-        if (p.zDepth > 0) {
-          ctx.beginPath();
+      // Final Render
+      for (let i = 0; i < drawList.length; i++) {
+        const p = drawList[i];
+        if (p.z > 0) {
           ctx.globalAlpha = p.alpha;
           ctx.fillStyle = p.color;
-          ctx.arc(p.sx, p.sy, Math.max(0.1, p.size), 0, Math.PI * 2);
-          ctx.fill();
+          // Use square dots for performance if very small, circle for larger ones
+          if (p.size < 1.5) {
+            ctx.fillRect(p.sx - p.size, p.sy - p.size, p.size * 2, p.size * 2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(p.sx, p.sy, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
-      });
+      }
     };
 
     requestRef.current = requestAnimationFrame(animate);

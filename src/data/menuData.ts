@@ -12,6 +12,12 @@ export interface MenuItem {
   description: string;
   icon: string;
   featureCards?: FeatureCardData[];
+  capabilities?: {
+    title: string;
+    description: string;
+    icon: string;
+    badge?: string;
+  }[];
   faqs?: { question: string; answer: string }[];
 }
 
