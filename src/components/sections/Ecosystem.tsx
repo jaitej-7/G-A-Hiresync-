@@ -60,6 +60,7 @@ const Ecosystem: React.FC = () => {
                                 src={BgSvg}
                                 alt="Ecosystem Background"
                                 className="absolute w-[180%] h-[180%] md:w-[130%] md:h-[130%] max-w-none object-contain -z-50 pointer-events-none opacity-80"
+                                loading="lazy"
                             />
 
                             {/* Stacked Image 2 (Moves Bottom Right) */}
@@ -68,6 +69,7 @@ const Ecosystem: React.FC = () => {
                                 src={ShapesImage2}
                                 alt="Ecosystem Layer 2"
                                 className="absolute w-full h-full object-contain drop-shadow-xl z-0"
+                                loading="lazy"
                             />
 
                             {/* Stacked Image 1 (Moves Top Left) */}
@@ -76,6 +78,7 @@ const Ecosystem: React.FC = () => {
                                 src={ShapesImage1}
                                 alt="Ecosystem Layer 1"
                                 className="absolute w-full h-full object-contain drop-shadow-2xl z-10"
+                                loading="lazy"
                             />
                         </div>
 

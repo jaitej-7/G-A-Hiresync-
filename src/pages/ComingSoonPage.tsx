@@ -14,8 +14,11 @@ const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
 }) => {
     return (
         <div className="relative min-h-screen w-full flex flex-col items-center justify-between overflow-x-hidden bg-neutral-50 px-6 py-12">
-            {/* Background Animation */}
-            <div className="fixed inset-0 z-0">
+            {/* Background Animation & Gradients */}
+            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-blue/10 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-purple/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-brand-blue/5 rounded-full blur-[100px]" />
                 <ParticlesCanvas className="opacity-60" />
             </div>
 

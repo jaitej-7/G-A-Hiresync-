@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
         >
             <div className="px-6 md:px-12 py-4 md:py-5 flex items-center justify-between relative">
                 <Link to="/" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
-                    <img src={Logo} alt="HireSync" className="h-8 md:h-10 w-auto object-contain" />
+                    <img src={Logo} alt="HireSync" className="h-8 md:h-10 w-auto object-contain" fetchPriority="high" />
                 </Link>
 
                 {/* Desktop Links */}

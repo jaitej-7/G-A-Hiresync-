@@ -110,17 +110,6 @@ const DynamicPage: React.FC<{ type: 'features' | 'useCases' }> = ({ type }) => {
                         Get Started Free
                     </motion.button>
                 </Link>
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="w-full sm:w-auto text-neutral-700 text-sm font-medium px-8 py-3.5 rounded-full border border-neutral-200 bg-white/50 hover:bg-white/80 backdrop-blur-sm transition-colors flex items-center justify-center gap-2"
-                >
-                    View Documentation
-                    <motion.div whileHover={{ x: 3 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-                        <Icon icon="solar:arrow-right-linear" className="text-base" />
-                    </motion.div>
-                </motion.button>
             </motion.div>
         </div>
       </section>
@@ -196,6 +185,7 @@ const DynamicPage: React.FC<{ type: 'features' | 'useCases' }> = ({ type }) => {
                                             src={card.image}
                                             alt={card.heading}
                                             className="w-full object-cover opacity-95 group-hover:opacity-100 transition-opacity"
+                                            loading="lazy"
                                         />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center opacity-20">

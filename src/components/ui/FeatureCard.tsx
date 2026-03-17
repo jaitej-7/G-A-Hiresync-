@@ -54,6 +54,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
                             src={image}
                             alt={title}
                             className="w-full h-full object-cover object-top"
+                            loading="lazy"
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
                         />

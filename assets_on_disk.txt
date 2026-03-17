@@ -1,0 +1,27 @@
+﻿
+Name                                        
+----                                        
+react.svg                                   
+3d-shapes-glowing-with-bright-holographic...
+3d-shapes-glowing-with-bright-holographic...
+Back group.svg                              
+Ai JOb descrptiodescription Generator.svg   
+Container.svg                               
+jd parshing.svg                             
+Resume parshing.svg                         
+Summery popup.svg                           
+Candidate Profile.svg                       
+Resume Bank builder.svg                     
+Resume Bnk.svg                              
+Resume Comparison.svg                       
+Job post negotiaons.svg                     
+T&c negtiations.svg                         
+Funnel Analysis.svg                         
+hiring analytics.svg                        
+Recuriter performace.svg                    
+hero.png                                    
+Hero.svg                                    
+footer logo.svg                             
+logo.svg                                    
+
+

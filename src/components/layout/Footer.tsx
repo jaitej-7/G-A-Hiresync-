@@ -33,11 +33,14 @@ const Footer: React.FC = () => {
             <div className="flex flex-col lg:flex-row gap-[10vw] lg:gap-[13vw] pb-[10vh] px-[8vw] justify-between">
                 {/* Logo + Social */}
                 <div className="flex flex-col items-center lg:items-start shrink-0">
-                    <img
-                        src={FooterLogo}
-                        alt="Hire Sync Logo"
-                        className="mb-4 shrink-0 h-12 md:h-16 w-auto"
-                    />
+                    <Link to="/" className="cursor-pointer">
+                        <img
+                            src={FooterLogo}
+                            alt="Hire Sync Logo"
+                            className="mb-4 shrink-0 h-12 md:h-16 w-auto"
+                            loading="lazy"
+                        />
+                    </Link>
 
                     <div className="flex gap-[15px] cursor-pointer">
                         <Icon icon="hugeicons:new-twitter" className="h-8 w-8 text-white hover:text-white/80 transition-colors" />

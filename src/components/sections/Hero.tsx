@@ -105,15 +105,15 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 1 }}
-                className="mt-8 md:mt-12 relative w-full mx-auto hidden md:block"
+                className="mt-8 md:mt-12 relative w-full max-w-6xl mx-auto hidden md:block px-4"
             >
 
                 <div className="w-full h-auto bg-white/40 backdrop-blur-md rounded-3xl overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.1)] border border-neutral-200/50 transition-all duration-500 opacity-90">
                     <img
                         src={HeroVisual}
                         alt="HireSync Dashboard Platform"
-                        className="w-full h-auto object-contain"
-                        loading="lazy"
+                        className="w-full h-full object-contain"
+                        fetchPriority="high"
                     />
                 </div>
             </motion.div>

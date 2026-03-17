@@ -147,10 +147,10 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onMouseEnter, onMouseLeave,
                             </p>
                         </div>
                         <Link 
-                            to={`/use-cases/${activeItem.slug}`}
+                            to={`/${activeMenu === 'features' ? 'features' : 'use-cases'}/${activeItem.slug}`}
                             className="text-sm font-bold text-brand-purple flex items-center gap-2 hover:gap-3 transition-all w-fit group"
                         >
-                            View Case Study
+                            Know More
                             <Icon icon="solar:arrow-right-linear" className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
@@ -210,14 +210,17 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onMouseEnter, onMouseLeave,
                                 <p className="text-[10px] text-neutral-400 font-black uppercase tracking-[0.2em]">AI Evolution Active</p>
                             </div>
                         </div>
+
+                        {/* Know More Button for Features */}
+                        {isFeatures && (
+                            <Link
+                                to={`/features/${activeItem.slug}`}
+                                className="mt-8 relative z-10 px-6 py-2.5 rounded-full bg-white border border-neutral-200 text-neutral-900 text-xs font-black uppercase tracking-widest hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 shadow-sm active:scale-95"
+                            >
+                                Know More
+                            </Link>
+                        )}
                         
-                        <Link 
-                            to={`/${activeMenu}/${activeItem.slug}`}
-                            className="mt-10 px-8 py-3 bg-neutral-900 text-white rounded-full text-xs font-bold flex items-center gap-2.5 hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/20 active:scale-95 z-20"
-                        >
-                            Explore Module
-                            <Icon icon="solar:arrow-right-linear" className="text-lg" />
-                        </Link>
                     </motion.div>
                 </AnimatePresence>
             </div>

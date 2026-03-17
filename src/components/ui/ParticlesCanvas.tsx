@@ -45,13 +45,13 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
     };
 
     window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', (e) => { 
-      mouseRef.current.x = e.clientX; 
-      mouseRef.current.y = e.clientY; 
+    window.addEventListener('mousemove', (e) => {
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
     });
-    window.addEventListener('mouseout', () => { 
-      mouseRef.current.x = -1000; 
-      mouseRef.current.y = -1000; 
+    window.addEventListener('mouseout', () => {
+      mouseRef.current.x = -1000;
+      mouseRef.current.y = -1000;
     });
 
     const isMobile = window.innerWidth <= 768;
@@ -102,7 +102,7 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        
+
         // Base rotated position
         const tx = p.radius * Math.sin(p.phi) * Math.cos(p.theta);
         const ty = p.radius * Math.sin(p.phi) * Math.sin(p.theta);
@@ -129,7 +129,7 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
         // Mouse repulsion
         const dx = sx - mouseX;
         const dy = sy - mouseY;
-        
+
         if (Math.abs(dx) < mouseRadius && Math.abs(dy) < mouseRadius) {
           const distSq = dx * dx + dy * dy;
           if (distSq < mouseRadius * mouseRadius) {
@@ -154,7 +154,7 @@ export const ParticlesCanvas: React.FC<ParticlesCanvasProps> = ({
         p.offsetZ += p.vz;
 
         const alpha = Math.max(0.05, Math.min(0.6, (1 - (rz2 / p.radius) * 0.5) * 0.5));
-        
+
         drawList.push({
           sx,
           sy,

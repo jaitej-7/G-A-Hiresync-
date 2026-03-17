@@ -77,7 +77,7 @@ HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-br
                     Recent Blog
                 </h2>
                 <Link to={`/blog/${MOCK_BLOGS[0].slug}`} className="group block relative w-full aspect-[21/9] md:aspect-[21/8] rounded-[32px] overflow-hidden shadow-2xl shadow-neutral-200/50 border border-neutral-200/50">
-                    <img src={MOCK_BLOGS[0].image} alt={MOCK_BLOGS[0].title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <img src={MOCK_BLOGS[0].image} alt={MOCK_BLOGS[0].title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/90 via-neutral-900/40 to-transparent"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
                         <div className="flex items-center gap-3 mb-4">
@@ -94,7 +94,7 @@ HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-br
                         <div className="flex items-center gap-6 text-sm text-neutral-400">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-neutral-700 overflow-hidden">
-                                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${MOCK_BLOGS[0].author}`} alt="Author" className="w-full h-full" />
+                                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${MOCK_BLOGS[0].author}`} alt="Author" className="w-full h-full" loading="lazy" />
                                 </div>
                                 <span className="text-neutral-200 font-medium">{MOCK_BLOGS[0].author}</span>
                             </div>
@@ -114,7 +114,7 @@ HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-br
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Left Large Card */}
                     <Link to={`/blog/${MOCK_BLOGS[1].slug}`} className="group relative w-full aspect-square lg:aspect-auto min-h-[400px] rounded-[32px] overflow-hidden shadow-lg border border-neutral-200/50 block">
-                        <img src={MOCK_BLOGS[1].image} alt={MOCK_BLOGS[1].title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={MOCK_BLOGS[1].image} alt={MOCK_BLOGS[1].title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                         <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/90 via-neutral-900/40 to-transparent"></div>
                         <div className="absolute bottom-0 left-0 p-8">
                             <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-medium border border-white/20 mb-3 inline-block">
@@ -135,7 +135,7 @@ HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-br
                     <div className="flex flex-col gap-6">
                         {[MOCK_BLOGS[2], MOCK_BLOGS[3]].map((blog, idx) => (
                             <Link key={idx} to={`/blog/${blog.slug}`} className="group relative w-full flex-1 rounded-[32px] overflow-hidden shadow-lg border border-neutral-200/50 block">
-                                <img src={blog.image} alt={blog.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <img src={blog.image} alt={blog.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/90 via-neutral-900/50 to-neutral-900/20"></div>
                                 <div className="absolute bottom-0 left-0 p-8">
                                     <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-medium border border-white/20 mb-3 inline-block">
@@ -187,7 +187,7 @@ HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-br
                     {MOCK_BLOGS.slice(4).map((blog) => (
                         <Link key={blog.id} to={`/blog/${blog.slug}`} className="group bg-white/80 backdrop-blur-sm border border-neutral-200/80 rounded-[28px] overflow-hidden shadow-[0_8px_24px_-12px_rgba(0,0,0,0.1)] hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.15)] transition-all duration-300 flex flex-col">
                             <div className="relative aspect-[4/3] overflow-hidden">
-                                <img src={blog.image} alt={blog.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <img src={blog.image} alt={blog.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-brand-purple border border-white/50 shadow-sm">
                                     {blog.category}
                                 </div>
@@ -202,7 +202,7 @@ HireSync <span className="text-transparent bg-clip-text bg-gradient-to-r from-br
                                 <div className="mt-auto pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-400 font-medium">
                                     <div className="flex items-center gap-2">
                                         <div className="w-6 h-6 rounded-full bg-neutral-100 overflow-hidden">
-                                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${blog.author}`} alt="Author" className="w-full h-full" />
+                                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${blog.author}`} alt="Author" className="w-full h-full" loading="lazy" />
                                         </div>
                                         <span className="text-neutral-600">{blog.author}</span>
                                     </div>

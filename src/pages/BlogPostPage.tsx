@@ -67,7 +67,7 @@ const BlogPostPage: React.FC = () => {
                 className="max-w-[1200px] mx-auto px-6 mb-12"
             >
                 <div className="relative w-full aspect-[21/9] md:aspect-[21/8] lg:aspect-[2.5/1] rounded-[32px] overflow-hidden shadow-2xl shadow-neutral-200/50">
-                    <img src={MOCK_BLOG_DATA.heroImage} alt={MOCK_BLOG_DATA.title} className="w-full h-full object-cover" />
+                    <img src={MOCK_BLOG_DATA.heroImage} alt={MOCK_BLOG_DATA.title} className="w-full h-full object-cover" fetchPriority="high" />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/90 via-neutral-900/50 to-transparent"></div>
                     
                     <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
@@ -82,7 +82,7 @@ const BlogPostPage: React.FC = () => {
                         <div className="flex flex-wrap items-center gap-6 text-sm text-neutral-300">
                             <div className="flex items-center gap-2">
                                 <div className="w-10 h-10 rounded-full bg-neutral-700 overflow-hidden border-2 border-white/10">
-                                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${MOCK_BLOG_DATA.author}`} alt="Author" className="w-full h-full" />
+                                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${MOCK_BLOG_DATA.author}`} alt="Author" className="w-full h-full" loading="lazy" />
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-white font-medium text-xs uppercase tracking-wider opacity-70">Written by</span>
